@@ -1,0 +1,26 @@
+body {
+	margin: 0;
+	color: $base-color;
+	background: $base-bg;
+	font: #{$base-font-size}/#{$base-line-height} $base-font-family;
+}
+img {
+	border-style: none;
+}
+a {
+	text-decoration: none;
+	color: $base-link-color;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+input, textarea, select {
+	font: 100% $base-font-size;
+	vertical-align: middle;
+	color: #000;
+}
+form, fieldset {
+	margin: 0;
+	padding: 0;
+	border-style: none;
+}

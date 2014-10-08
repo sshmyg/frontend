@@ -1,0 +1,90 @@
+//http://css-tricks.com/snippets/css/useful-css3-less-mixins/
+
+.after () {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+//Color
+.color (@color:false) when not (@color=false) {color: @color;}
+
+//Style
+.style (@style:false) when not (@style = false) {
+	.style (@style) when (@style = italic) {font-style: @style;}
+	.style (@style) when (@style = bold) {font-weight: @style;}
+	.style (@style);
+}
+
+/*
+	Placeholder:
+	input {
+	    .placeholder(false, bold);
+	}
+*/
+.placeholder (@color: false, @style: false) {
+	&::-webkit-input-placeholder {
+		.color(@color);
+		.style(@style);
+	}
+	&:-moz-placeholder {
+		.color(@color);
+		.style(@style);
+	}
+	&::-moz-placeholder {
+		.color(@color);
+		.style(@style);
+	}
+	&:-ms-input-placeholder {
+		.color(@color);
+		.style(@style);
+	}
+}
+
+//Opacity
+.opacity (@opacity: 0.5) {
+	-webkit-opacity: @opacity;
+		-moz-opacity: @opacity;
+			opacity: @opacity;
+}
+
+//Gradient
+.gradient (@startColor: #eee, @endColor: white) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(top, @startColor, @endColor);
+	background: -moz-linear-gradient(top, @startColor, @endColor);
+	background: -ms-linear-gradient(top, @startColor, @endColor);
+	background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+//Gradient horizontal
+.gradient-horizontal (@startColor: #eee, @endColor: white) {
+	background-color: @startColor;
+	background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+	background-image: -webkit-linear-gradient(left, @startColor, @endColor);
+	background-image: -moz-linear-gradient(left, @startColor, @endColor);
+	background-image: -ms-linear-gradient(left, @startColor, @endColor);
+	background-image: -o-linear-gradient(left, @startColor, @endColor);
+}
+
+.bg-size (@size: cover) { /* contain - масштабируется пропорционально размерам бг, cover - не пропорционально */
+	-webkit-background-size: @size;
+		-moz-background-size: @size;
+			-o-background-size: @size;
+					background-size: @size;
+}
+
+.transition (@prop, @time, @effect) {
+	-webkit-transition: @arguments;
+	-moz-transition: @arguments;
+	-o-transition: @arguments;
+	transition: @arguments;
+}
+
+.box-sizing (@prop: border-box) {
+	-webkit-box-sizing: @prop;
+	-moz-box-sizing: @prop;
+	-o-box-sizing: @prop;
+	box-sizing: @prop;
+}
