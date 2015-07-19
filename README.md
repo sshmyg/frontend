@@ -1,8 +1,10 @@
-# Boilerplate jade, less(or sass), browserify
+# Boilerplate jade, sass(compass), browserify
 
 ##Steps for starting:
-1. Install [nodejs](http://nodejs.org/)
-2. Open console window
+1. Open console window
+2. Install:
+	1.1 [nodejs](http://nodejs.org/)
+	1.2 gem update --system && sudo gem install sass sass-globbing compass
 3. Move to the project folder
-4. Type npm install (---- Wait a little bit -----)
-5. Type npm start (or gulp)
+4. Type npm install
+5. Profit
