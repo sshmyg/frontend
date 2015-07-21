@@ -1,0 +1,14 @@
+@import "base/all";
+
+body {
+    background: green;
+    }
+
+$sprite-spacing: 20px;
+$u: sprite-map("sprites/sprite/*.png");
+    $u2: sprite-map("sprites/sprite2x/*.png");
+    
+
+    .sprite-block {
+        @include sprite(payment-promocode, $u, $u2);
+        }

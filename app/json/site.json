@@ -1,0 +1,11 @@
+{
+    "site": {
+        "title": "My site",
+        "charset": "utf8",
+        "lang": "en",
+        "paths": {
+            "js": ["/js/common.js"],
+            "css": ["/css/common.css"]
+        }
+    }
+}
