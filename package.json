@@ -1,7 +1,7 @@
 {
   "author": "Serhey Shmyg",
   "name": "FrontEnd-Project-Gulp",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "homepage": "https://github.com/serheyShmyg/",
   "repository": {
     "type": "git",
@@ -14,18 +14,11 @@
   },
   "browserify": {
     "transform": [
-      "aliasify",
       "html2js-browserify",
       "uglifyify"
     ]
   },
-  "aliasify": {
-      "aliases": {
-        "underscore": "lodash"
-      }
-  },
   "devDependencies": {
-    "aliasify": "^1.7.2",
     "browser-sync": "^2.7.13",
     "browserify": "^10.2.6",
     "gulp": "^3.9.0",
