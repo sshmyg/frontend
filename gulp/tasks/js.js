@@ -13,6 +13,7 @@ module.exports = function(taskName, gulp, loc, browserSync) {
         gulpUglify = require('gulp-uglify'),
         gulpSourcemaps = require('gulp-sourcemaps'),
         buffer = require('vinyl-buffer'),
+        gulpIf = require('gulp-if'),
         _ = require('lodash'),
 
         config = require(loc.config),
@@ -47,16 +48,28 @@ module.exports = function(taskName, gulp, loc, browserSync) {
             this.emit('end');
         },
 
-        BROWSERIFY_CONF = {
-            extensions: ['.html'],
-            bundleConfigs: [{
-                entries: loc.jsInit,
-                dest: loc.jsBuild,
-                outputName: loc.jsResultFileName
-            }]
-        };
+        DEFAULT_BUNDLE_CONF = {
+            paths: loc.jsModules,
+            dest: loc.jsBuild,
+            extensions: ['.html']
+        },
 
-    console.log(config);
+        BROWSERIFY_CONF = {
+            bundleConfigs: [
+                //Lib bundle
+                _.extend({}, DEFAULT_BUNDLE_CONF, {
+                    entries: loc.jsLibs,
+                    outputName: loc.jsLibsResultFileName
+                    //insertGlobals: true
+                }),
+                //All modules bundle
+                _.extend({}, DEFAULT_BUNDLE_CONF, {
+                    debug: true,
+                    entries: loc.jsInit,
+                    outputName: loc.jsResultFileName,
+                })
+            ]
+        };
     
     gulp.task('js', function() {
         var bundleQueue = BROWSERIFY_CONF.bundleConfigs.length,
@@ -70,28 +83,28 @@ module.exports = function(taskName, gulp, loc, browserSync) {
                      bundleConfig = _.omit(bundleConfig, ['external', 'require']);
                 }
 
-                var b = browserify(bundleConfig);
+                var b = browserify(bundleConfig),
+                    bundle = function() {
+                      // Log when bundling starts
+                      bundleLogger.start(bundleConfig.outputName);
 
-                var bundle = function() {
-                  // Log when bundling starts
-                  bundleLogger.start(bundleConfig.outputName);
-
-                    return b
-                        .bundle()
-                        // Report compile errors
-                        .on('error', handleErrors)
-                        // Use vinyl-source-stream to make the
-                        // stream gulp compatible. Specify the
-                        // desired output filename here.
-                        .pipe(source(bundleConfig.outputName))
-                        .pipe(buffer())
-                        .pipe(gulpSourcemaps.init({loadMaps: true}))
-                        .pipe(gulpUglify())
-                        .pipe(gulpSourcemaps.write('./')) // writes .map file
-                        // Specify the output destination
-                        .pipe(gulp.dest(bundleConfig.dest))
-                        .pipe(browserSync.reload({stream: true}));
-                };
+                        return b
+                            .bundle()
+                            // Report compile errors
+                            .on('error', handleErrors)
+                            // Use vinyl-source-stream to make the
+                            // stream gulp compatible. Specify the
+                            // desired output filename here.
+                            .pipe(source(bundleConfig.outputName))
+                            .pipe(buffer())
+                            .pipe(gulpIf(config.isDev, gulpSourcemaps.init({loadMaps: true})))
+                            .pipe(gulpUglify())
+                            //writes .map file
+                            .pipe(gulpIf(config.isDev, gulpSourcemaps.write('./')))
+                            // Specify the output destination
+                            .pipe(gulp.dest(bundleConfig.dest))
+                            .pipe(gulpIf(config.isDev, browserSync.reload({stream: true})));
+                    };
 
                 if(config.isDev) {
                     // Wrap with watchify and rebundle on changes

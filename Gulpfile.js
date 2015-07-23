@@ -1,10 +1,11 @@
-'use strict';
+var gulpPath = './gulp',
 
-var gulp = require('gulp'),
+    gulp = require('gulp'),
     path = require('path'),
     runSequence = require('run-sequence').use(gulp),
-    gulpPath = './gulp',
     loc = require(path.resolve(gulpPath, 'location.js')),
+    
+    config = require(loc.config),
 
     loadTask = function (taskName) {
         if (!taskName) {
@@ -26,14 +27,19 @@ loadTask('js', gulp, loc, browserSync);
 loadTask('watch', gulp, loc, browserSync);
 loadTask('clear', gulp, loc);
 
-
 gulp.task('build', function() {
     runSequence('json', 'jade', 'css', 'js');
 });
 
 gulp.task('default', function() {
-    runSequence('json', 'jade', 'css', 'js', 'server', 'watch');
+    if (config.isDev) {
+        runSequence('json', 'jade', 'css', 'js', 'server', 'watch');
+    } else {
+        runSequence('build');
+    }
 });
+
+
 
 
 

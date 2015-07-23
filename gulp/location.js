@@ -60,8 +60,14 @@ module.exports = {
     get jsResultFileName() {
         return this.minFileName + '.js';
     },
+    get jsLibsResultFileName() {
+        return 'libs.js';
+    },
     get js() {
         return path.join(this.root, 'js');
+    },
+    get jsModules() {
+        return path.join(this.js, 'modules');
     },
     get jsBuild() {
         return path.join(this.build, 'js');
@@ -69,6 +75,10 @@ module.exports = {
     get jsInit() {
         return './' + path.join(this.js, 'init.js');
     },
+    get jsLibs() {
+        return './' + path.join(this.js, this.jsLibsResultFileName);
+    },
+    
 
     //Images
     get images() {
