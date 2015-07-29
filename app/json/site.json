@@ -4,7 +4,7 @@
         "charset": "utf8",
         "lang": "en",
         "paths": {
-            "js": ["/js/libs.js", "/js/common.js"],
+            "js": ["/js/common.libs.js", "/js/common.js"],
             "css": ["/css/common.css"]
         }
     }

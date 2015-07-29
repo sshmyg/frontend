@@ -1,20 +1,20 @@
-module.exports = function(taskName, gulp, loc) {
+module.exports = function(gulp) {
     'use strict';
     
     var browserSync = require('browser-sync');
 
-    gulp.task(taskName, function() {
+    gulp.task('server', function() {
         browserSync({
             notify: false,
             //open: false,
             ui: false,
             server: {
                 directory: false,
-                baseDir: loc.markup,
+                baseDir: 'app/build/markup',
                 index: 'index.html',
                 routes: {
-                    '/css/': loc.cssBuild + '/',
-                    '/js/': loc.jsBuild + '/'
+                    '/css/': 'app/build/css/',
+                    '/js/': 'app/build/js/',
                 }
             }
         });

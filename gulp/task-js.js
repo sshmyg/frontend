@@ -1,6 +1,6 @@
 //https://github.com/greypants/gulp-starter
 
-module.exports = function(taskName, gulp, loc, browserSync) {
+module.exports = function(gulp, browserSync) {
     'use strict';
     
     var browserify = require('browserify'),
@@ -16,7 +16,7 @@ module.exports = function(taskName, gulp, loc, browserSync) {
         gulpIf = require('gulp-if'),
         _ = require('lodash'),
 
-        config = require(loc.config),
+        config = require(process.cwd() + '/config.json'),
 
         startTime,
         bundleLogger = {
@@ -49,24 +49,26 @@ module.exports = function(taskName, gulp, loc, browserSync) {
         },
 
         DEFAULT_BUNDLE_CONF = {
-            paths: loc.jsModules,
-            dest: loc.jsBuild,
+            paths: 'app/js/modules',
+            dest: 'app/build/js',
             extensions: ['.html']
         },
 
         BROWSERIFY_CONF = {
             bundleConfigs: [
+
                 //Lib bundle
                 _.extend({}, DEFAULT_BUNDLE_CONF, {
-                    entries: loc.jsLibs,
-                    outputName: loc.jsLibsResultFileName
+                    entries: 'app/js/libs.js',
+                    outputName: 'common.libs.js'
                     //insertGlobals: true
                 }),
+
                 //All modules bundle
                 _.extend({}, DEFAULT_BUNDLE_CONF, {
                     debug: true,
-                    entries: loc.jsInit,
-                    outputName: loc.jsResultFileName,
+                    entries: 'app/js/init.js',
+                    outputName: 'common.js',
                 })
             ]
         };

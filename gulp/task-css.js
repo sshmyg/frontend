@@ -1,17 +1,17 @@
-module.exports = function(taskName, gulp, loc) {
+module.exports = function(gulp) {
     'use strict';
     
     var gulpCompass = require('gulp-compass'),
         spawn = require('child_process').spawn;
 
-    gulp.task(taskName, function () {
-        return gulp.src(loc.cssFiles)
+    gulp.task('css', function () {
+        return gulp.src('app/css/**/*.scss')
                 .pipe(gulpCompass({
                     http_path: '/',
-                    css: loc.cssBuild,
-                    sass: loc.css,
-                    image: loc.images,
-                    font: loc.font,
+                    css: 'app/build/css',
+                    sass: 'app/css',
+                    image: 'app/images',
+                    font: 'app/css/font',
                     sourcemap: true,
                     style: 'compressed',
                     relative: false,
@@ -21,7 +21,7 @@ module.exports = function(taskName, gulp, loc) {
                   console.log(error);
                   this.emit('end');
                 })
-                .pipe(gulp.dest(loc.cssBuild));
+                .pipe(gulp.dest('app/build/css'));
     });
 
     //Use compass directly
@@ -35,16 +35,16 @@ module.exports = function(taskName, gulp, loc) {
                 '/',
 
                 '--css-dir',
-                loc.cssBuild,
+                'app/build/css',
 
                 '--sass-dir',
-                loc.css,
+                'app/css',
 
                 '--images-dir',
-                loc.images,
+                'app/images',
 
                 '--fonts-dir',
-                loc.font,
+                'app/css/font',
 
                 '--output-style',
                 'compressed',

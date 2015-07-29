@@ -1,43 +1,18 @@
-var gulpPath = './gulp',
-
-    gulp = require('gulp'),
+var gulp = require('gulp'),
     path = require('path'),
-    runSequence = require('run-sequence').use(gulp),
-    loc = require(path.resolve(gulpPath, 'location.js')),
-    
-    config = require(loc.config),
-
-    loadTask = function (taskName) {
-        if (!taskName) {
-            return false;
-        }
-
-        var taskPath = path.resolve(gulpPath, 'tasks', taskName) + '.js';
-
-        return require(taskPath).apply(null, Array.prototype.slice.call(arguments, 0));
-    },
     browserSync;
 
+//Load tasks
+browserSync = require('./gulp/task-server')(gulp);
+require('./gulp/task-json')(gulp);
+require('./gulp/task-jade')(gulp);
+require('./gulp/task-css')(gulp);
+require('./gulp/task-js')(gulp, browserSync);
+require('./gulp/task-watch')(gulp, browserSync);
+require('./gulp/task-clear')(gulp);
 
-browserSync = loadTask('server', gulp, loc);
-loadTask('json', gulp, loc);
-loadTask('jade', gulp, loc);
-loadTask('css', gulp, loc);
-loadTask('js', gulp, loc, browserSync);
-loadTask('watch', gulp, loc, browserSync);
-loadTask('clear', gulp, loc);
-
-gulp.task('build', function() {
-    runSequence('json', 'jade', 'css', 'js');
-});
-
-gulp.task('default', function() {
-    if (config.isDev) {
-        runSequence('json', 'jade', 'css', 'js', 'server', 'watch');
-    } else {
-        runSequence('build');
-    }
-});
+//Set mixed tasks
+require('./gulp/task-all')(gulp);
 
 
 

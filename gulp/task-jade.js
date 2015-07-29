@@ -1,4 +1,4 @@
-module.exports = function(taskName, gulp, loc) {
+module.exports = function(gulp) {
     'use strict';
     
     var jade = require('gulp-jade'),
@@ -9,22 +9,22 @@ module.exports = function(taskName, gulp, loc) {
         gulpFilter = require('gulp-filter'),
         fs = require('fs');
 
-    return gulp.task(taskName, function() {
+    return gulp.task('jade', function() {
         var jadeData;
 
         try {
-            jadeData = JSON.parse(fs.readFileSync(loc.jsonResultFilePath).toString());
+            jadeData = JSON.parse(fs.readFileSync('app/build/json/common.json').toString());
         } catch(e) {
-            jadeData = require(loc.jsonResultFilePath);
+            jadeData = require('app/build/json/common.json');
         }
 
-        return gulp.src(loc.jadeAllFiles)
-                .pipe(changed(loc.markup, {
+        return gulp.src('app/jade/**/*.jade')
+                .pipe(changed('app/build/markup', {
                     extension: '.html'
                 }))
                 .pipe(gulpIf(global.useJadeCache, cached('jade')))
                 .pipe(jadeInherit({
-                    basedir: loc.jade
+                    basedir: 'app/jade'
                 }))
                 .pipe(gulpFilter(function (file) {
                     return !/\/_/.test(file.path) && !/^_/.test(file.relative);
@@ -33,6 +33,6 @@ module.exports = function(taskName, gulp, loc) {
                     locals: jadeData,
                     pretty: '\t'
                 }))
-                .pipe(gulp.dest(loc.markup));
+                .pipe(gulp.dest('app/build/markup'));
     });
 };

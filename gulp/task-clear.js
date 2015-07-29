@@ -1,12 +1,12 @@
-module.exports = function(taskName, gulp, loc) {
+module.exports = function(gulp) {
     'use strict';
 
     var gulpRimraf = require('gulp-rimraf');
 
-    return gulp.task(taskName, function() {
+    return gulp.task('clear', function() {
         return gulp.src([
-                    loc.build,
-                    process.cwd() + '/node_modules'
+                    'app/build',
+                    './node_modules'
                 ], {
                     read: false
                 })
