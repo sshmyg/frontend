@@ -12,6 +12,9 @@
     "clear": "gulp clear",
     "build": "gulp build"
   },
+  "browserify": {
+    "transform": [ "html2js-browserify" ]
+  },
   "devDependencies": {
     "browser-sync": "^2.7.13",
     "browserify": "^10.2.6",
