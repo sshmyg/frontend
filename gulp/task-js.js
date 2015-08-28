@@ -7,71 +7,34 @@ module.exports = function(gulp, browserSync) {
         watchify = require('watchify'),
         source = require('vinyl-source-stream'),
         mergeStream = require('merge-stream'),
-        gulpUtil = require('gulp-util'),
-        prettyHrtime = require('pretty-hrtime'),
-        gulpNotify = require('gulp-notify'),
         gulpUglify = require('gulp-uglify'),
         gulpSourcemaps = require('gulp-sourcemaps'),
         buffer = require('vinyl-buffer'),
         gulpIf = require('gulp-if'),
+
         _ = require('lodash'),
 
         config = require(process.cwd() + '/config.json'),
+        bundleLogger = require('./helpers').bundleLogger,
+        handleErrors = require('./helpers').handleErrors,
+        createBrowserifyConfig = require('./helpers').createBrowserifyConfig,
 
-        startTime,
-        bundleLogger = {
-            start: function(filepath) {
-                startTime = process.hrtime();
-                gulpUtil.log('Bundling', gulpUtil.colors.green(filepath) + '...');
+        BROWSERIFY_CONF = createBrowserifyConfig({
+            defaultConf: {
+                paths: ['app/js/modules'],
+                dest: 'app/build/js',
+                extensions: ['.html']
             },
-
-            watch: function(bundleName) {
-                gulpUtil.log('Watching files required by', gulpUtil.colors.yellow(bundleName));
-            },
-
-            end: function(filepath) {
-                var taskTime = process.hrtime(startTime),
-                    prettyTime = prettyHrtime(taskTime);
-
-                gulpUtil.log('Bundled', gulpUtil.colors.green(filepath), 'in', gulpUtil.colors.magenta(prettyTime));
-            }
-        },
-
-        handleErrors = function() {
-            var args = Array.prototype.slice.call(arguments);
-
-            gulpNotify.onError({
-                title: 'Compile Error',
-                message: "<%= error %>"
-            }).apply(this, args);
-
-            this.emit('end');
-        },
-
-        DEFAULT_BUNDLE_CONF = {
-            paths: 'app/js/modules',
-            dest: 'app/build/js',
-            extensions: ['.html']
-        },
-
-        BROWSERIFY_CONF = {
-            bundleConfigs: [
-
-                //Lib bundle
-                _.extend({}, DEFAULT_BUNDLE_CONF, {
-                    entries: 'app/js/libs.js',
-                    outputName: 'common.libs.js'
-                    //insertGlobals: true
-                }),
-
-                //All modules bundle
-                _.extend({}, DEFAULT_BUNDLE_CONF, {
-                    debug: true,
-                    entries: 'app/js/init.js',
-                    outputName: 'common.js',
-                })
-            ]
-        };
+            exactConf: {
+                /*libs: {
+                    insertGlobals: true
+                },*/
+                common: {
+                    debug: true
+                }
+            }, 
+            entriesPath: config.jsEntriesPath
+        });
     
     gulp.task('js', function() {
         var bundleQueue = BROWSERIFY_CONF.bundleConfigs.length,

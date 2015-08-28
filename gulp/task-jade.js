@@ -27,6 +27,7 @@ module.exports = function(gulp) {
                     basedir: 'app/jade'
                 }))
                 .pipe(gulpFilter(function (file) {
+                    //Ignore folders and files with lodash name begin (_file-name.jade)
                     return !/\/_/.test(file.path) && !/^_/.test(file.relative);
                 }))
                 .pipe(jade({
