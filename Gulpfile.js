@@ -1,18 +1,14 @@
-var gulp = require('gulp'),
-    path = require('path'),
-    browserSync;
-
 //Load tasks
-browserSync = require('./gulp/task-server')(gulp);
-require('./gulp/task-json')(gulp);
-require('./gulp/task-jade')(gulp);
-require('./gulp/task-css')(gulp);
-require('./gulp/task-js')(gulp, browserSync);
-require('./gulp/task-watch')(gulp, browserSync);
-require('./gulp/task-clear')(gulp);
+require('./tasks/server');
+require('./tasks/json');
+require('./tasks/jade');
+require('./tasks/css');
+require('./tasks/js');
+require('./tasks/watch');
+require('./tasks/clear');
 
 //Set mixed tasks
-require('./gulp/task-all')(gulp);
+require('./tasks/all');
 
 
 
