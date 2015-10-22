@@ -1,4 +1,3 @@
-//https://github.com/greypants/gulp-starter
 var gulp = require('gulp'),
     browserify = require('browserify'),
     browserSync = require('browser-sync'),
@@ -6,9 +5,8 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     mergeStream = require('merge-stream'),
     gulpUglify = require('gulp-uglify'),
-    gulpSourcemaps = require('gulp-sourcemaps'),
-    buffer = require('vinyl-buffer'),
     gulpIf = require('gulp-if'),
+    through = require('through2'),
 
     _ = require('lodash'),
     gulpUtil = require('gulp-util'),
@@ -103,11 +101,8 @@ var gulp = require('gulp'),
             extensions: ['.html']
         },
         entryConf: {
-            /*libs: {
-                insertGlobals: true
-            },*/
             common: {
-                debug: true
+                debug: config.isDev
             }
         }, 
         entriesPath: config.jsEntriesPath
@@ -127,25 +122,28 @@ gulp.task('js', function() {
 
             var b = browserify(bundleConfig),
                 bundle = function() {
-                  // Log when bundling starts
-                  bundleLogger.start(bundleConfig.outputName);
+                    // Log when bundling starts
+                    bundleLogger.start(bundleConfig.outputName);
 
                     return b
                         .bundle()
+
                         // Report compile errors
                         .on('error', handleErrors)
+
                         // Use vinyl-source-stream to make the
                         // stream gulp compatible. Specify the
                         // desired output filename here.
                         .pipe(source(bundleConfig.outputName))
-                        .pipe(buffer())
-                        .pipe(gulpIf(config.isDev, gulpSourcemaps.init({loadMaps: true})))
-                        .pipe(gulpUglify())
-                        //writes .map file
-                        .pipe(gulpIf(config.isDev, gulpSourcemaps.write('./')))
+                        .pipe(gulpIf(!config.isDev, gulpUglify()))
+
                         // Specify the output destination
                         .pipe(gulp.dest(bundleConfig.dest))
-                        .pipe(gulpIf(config.isDev, browserSync.reload({stream: true})));
+                        .pipe(gulpIf(config.isDev, browserSync.reload({stream: true})))
+                        .pipe(through.obj(function(file, enc, cb) {
+                            bundleLogger.end(bundleConfig.outputName);
+                            cb();
+                        }))
                 };
 
             if(config.isDev) {

@@ -1,7 +1,7 @@
 {
   "author": "Serhey Shmyg",
   "name": "FrontEnd-Project-Gulp",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "homepage": "https://github.com/serheyShmyg/",
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "browser-sync": "^2.7.13",
-    "browserify": "^10.2.6",
+    "browserify": "^11.2.0",
     "gulp": "^3.9.0",
     "gulp-cached": "^1.1.0",
     "gulp-changed": "^1.2.1",
@@ -39,6 +39,7 @@
     "run-sequence": "^1.1.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.2.3"
+    "watchify": "^3.4.0",
+    "through2": "^2.0.0"
   }
 }
