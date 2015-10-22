@@ -77,6 +77,11 @@ var gulp = require('gulp'),
             }
         }
 
+        //Exclude hidden files
+        files = files.filter(function(filePath) {
+            return path.basename(filePath).indexOf('.') !== 0;
+        });
+
         browserifyConf.bundleConfigs = files.map(function(filePath, i) {
             fileName = path.basename(filePath);
             filePrefix = fileName.replace('.js', '');
