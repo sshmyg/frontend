@@ -49,9 +49,10 @@ var gulp = require('gulp'),
     /**
      * Create config for boriwserify
      * @param {Object} conf
-     * @param {Object} conf.defaultConf
-     * @param {Object} conf.exactConf
-     * @param {String} conf.entriesPath
+     * @param {Object} conf.defaultConf Common browserify config 
+     * @param {Object} conf.entryConf Configs for entries 
+     * @param {Object} conf.entryConf.XXX (XXX) - mean file name in entries folder. Personal config
+     * @param {String} conf.entriesPath Path to folder with entries files
      */
     createBrowserifyConfig = function(conf) {
         conf = conf || {};
@@ -65,7 +66,7 @@ var gulp = require('gulp'),
             return false;
         }
 
-        conf.exactConf || (conf.exactConf = {});
+        conf.entryConf || (conf.entryConf = {});
 
         try {
             files = getFilesList(conf.entriesPath);
@@ -89,7 +90,7 @@ var gulp = require('gulp'),
             return _.extend({}, conf.defaultConf, {
                 entries: path.join(filePath),
                 outputName: filePrefix + '.min.js'
-            }, conf.exactConf[filePrefix] || {})
+            }, conf.entryConf[filePrefix] || {})
         });
 
         return browserifyConf;
@@ -101,7 +102,7 @@ var gulp = require('gulp'),
             dest: 'app/build/js',
             extensions: ['.html']
         },
-        exactConf: {
+        entryConf: {
             /*libs: {
                 insertGlobals: true
             },*/
