@@ -28,7 +28,6 @@
     "gulp-jade": "^1.0.1",
     "gulp-jade-inheritance": "^0.5.2",
     "gulp-rimraf": "^0.1.1",
-    "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.6",
     "html2js-browserify": "^1.0.0",
@@ -37,7 +36,6 @@
     "recursive-readdir-sync": "^1.0.6",
     "pretty-hrtime": "^1.0.0",
     "run-sequence": "^1.1.1",
-    "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0",
     "through2": "^2.0.0"
