@@ -1,4 +1,74 @@
 {
     "isDev": true,
-    "jsEntriesPath": "app/js/entries"
+
+    "tasks": {
+        "jade": {
+            "baseDir": "app/jade",
+            "src": "app/jade/**/*.jade",
+            "dest": "app/build/markup",
+            "jsonDest": "app/build/json/common.json",
+            "pretty": "\t",
+            "extension": ".html"
+        },
+
+        "css": {
+            "src": "app/css/**/*.scss",
+            "dest": "app/build/css",
+            "sass": {
+                "http_path": "/",
+                "css": "app/build/css",
+                "sass": "app/css",
+                "image": "app/images",
+                "font": "app/css/font",
+                "sourcemap": true,
+                "style": "compressed",
+                "relative": false,
+                "environment": "production"
+            }
+        },
+
+        "json": {
+            "src": "app/json/**/*.json",
+            "dest": "app/build/json",
+            "extendFile": "common.json"
+        },
+
+        "js": {
+            "defaultConf": {
+                "paths": ["app/js/modules"],
+                "dest": "app/build/js",
+                "extensions": [".html"]
+            },
+            "entryConf": {
+                "common": {
+                    "debug": true
+                }
+            }, 
+            "entriesPath": "app/js/entries"
+        },
+
+        "server": {
+            "browserSync": {
+                "notify": false,
+                "ui": false,
+                "server": {
+                    "directory": false,
+                    "baseDir": "app/build/markup",
+                    "index": "index.html",
+                    "routes": {
+                        "/css/": "app/build/css/",
+                        "/js/": "app/build/js/"
+                    }
+                }
+            }
+        },
+
+        "clear": {
+            "src": [
+                "app/build",
+                "./node_modules",
+                "npm-debug.log"
+            ]
+        }
+    }
 }
