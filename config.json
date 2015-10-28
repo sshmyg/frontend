@@ -14,16 +14,11 @@
         "css": {
             "src": "app/css/**/*.scss",
             "dest": "app/build/css",
+            "autoprefixer": {
+                "browsers": ["last 3 version"]
+            },
             "sass": {
-                "http_path": "/",
-                "css": "app/build/css",
-                "sass": "app/css",
-                "image": "app/images",
-                "font": "app/css/font",
-                "sourcemap": true,
-                "style": "compressed",
-                "relative": false,
-                "environment": "production"
+                "outputStyle": "compressed"
             }
         },
 
