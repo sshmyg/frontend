@@ -18,5 +18,5 @@
 4. Use any tasks with different config `require('./tasks/jade')(diffConfig)`. How to use `diffConfig` see `config.json` in root folder.
 5. __SASS__ (`libsass`) for style.
     - autoprefixer (vendor prefixer 3 latest browser version)
-    - bourbon (mixins)
+    - [bourbon](http://bourbon.io/)(mixins)
 6. __JADE__ for templating
