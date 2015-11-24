@@ -7,7 +7,7 @@ var gulp             = require('gulp'),
     path             = require('path'),
     handleTaskConfig = require('../helpers/taskConfigHandler'),
     handleErrors     = require('../helpers/errorsHandler'),
-    configGlob       = require(path.join(process.cwd(), 'config.json')),
+    configGlob       = require('../config'),
     isDev            = configGlob.isDev;
 
 module.exports = function(config) {

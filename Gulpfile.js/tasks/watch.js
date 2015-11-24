@@ -2,7 +2,7 @@ var gulp         = require('gulp'),
     browserSync  = require('browser-sync'),
     runSequence  = require('run-sequence').use(gulp),
     path         = require('path'),
-    pathToConfig = path.join(process.cwd(), 'config.json'),
+    pathToConfig = '../config',
     configGlob   = require(pathToConfig);
 
 module.exports = function() {

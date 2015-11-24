@@ -1,7 +1,7 @@
 var gulp        = require('gulp'),
     runSequence = require('run-sequence').use(gulp),
     path        = require('path'),
-    configGlob  = require(path.join(process.cwd(), 'config.json')),
+    configGlob  = require('../config'),
     serverMode  = configGlob.isDev ? 'dev' : 'build';
 
 module.exports = function() {

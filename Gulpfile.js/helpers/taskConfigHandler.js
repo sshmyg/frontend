@@ -2,7 +2,7 @@
 
 var path       = require('path'),
     _          = require('lodash'),
-    configGlob = require(path.join(process.cwd(), 'config.json'));
+    configGlob = require('../config');
 
 module.exports = function(defaultTaskName, config) {
     var isString;
