@@ -7,7 +7,7 @@
 ```shell
     git clone https://github.com/serheyShmyg/gulp-frontend-browserify.git &&
     cd frontend &&
-    npm install && 
+    npm install &&
     npm start;
 ```
 
