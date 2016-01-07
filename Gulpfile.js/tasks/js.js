@@ -1,34 +1,76 @@
-var gulp             = require('gulp'),
-    webpack          = require('webpack'),
-    gulpUtil         = require('gulp-util'),
-    browserSync      = require('browser-sync'),
+'use strict';
 
-    handleTaskConfig = require('../helpers/taskConfigHandler'),
-    getFilesList     = require('../helpers/getFilesList'),
+var gulp = require('gulp'),
+    path = require('path'),
+    webpack = require('webpack'),
+    gulpUtil = require('gulp-util'),
+    browserSync = require('browser-sync'),
+    
+    jsContext  = path.join(process.cwd(), 'app', 'js'),
+    webpackConf = {
+        context: jsContext,
 
+        entry: {
+            common: './entries/common',
+            vendors: './entries/vendors'
+        },
 
-    webpackConf      = require('../config/webpack.config'),
-    isDev            = require('../config').isDev;
+        devtool: isDev ? 'cheap-inline-module-sourcemap' : 'hidden',
 
-module.exports = function(config) {
-    config = handleTaskConfig('js', config);
+        output: {
+            path: 'app/build/js',
+            filename: '[name].min.js'
+        },
 
-    gulp.task(config.taskName, function(callback) {
-        return webpack(webpackConf, function(err, stats) {
-                    if (err) throw new gulpUtil.PluginError("webpack", err);
+        resolve: {
+            root: path.join(jsContext, 'modules'),
+            extensions: ['', '.js']
+        },
 
-                    callback();
-                })
-                .watch({
-                    aggregateTimeout: 100
-                }, function(err, stats) {
-                    if (err) throw new gulpUtil.PluginError("webpack", err);
+        resolveLoader: {
+            modulesDirectories: ['node_modules'],
+            moduleTemplates: ['*-loader', '*'],
+            extensions: ['', '.js']
+        },
 
-                    gulpUtil.log("[webpack]", stats.toString());
+        module: {
+            loaders: [
+                {
+                    test: /\.html$/,
+                    loader: 'html',
+                    exclude: ['node_modules']
+                }
+                /*{
+                    test: /\.js$/,
+                    include: jsContext,
+                    loader: 'babel',
+                    query: {
+                        presets: ['es2015', 'stage-2']
+                    }
+                }*/
+            ]
+        },
 
-                    browserSync.reload();
-                });
-    });
+        plugins: [
+            
+        ]
+    };
 
-    return config;
-};
+!isDev && webpackConf.plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true}));
+
+gulp.task('js', function(callback) {
+    return webpack(webpackConf, function(err, stats) {
+                if (err) throw new gulpUtil.PluginError('webpack', err);
+
+                callback();
+            })
+            .watch({
+                aggregateTimeout: 100
+            }, function(err, stats) {
+                if (err) throw new gulpUtil.PluginError('webpack', err);
+
+                gulpUtil.log('[webpack]', stats.toString());
+
+                browserSync.reload();
+            });
+});

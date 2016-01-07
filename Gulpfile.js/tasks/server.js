@@ -1,13 +1,21 @@
-var gulp             = require('gulp'),
-    browserSync      = require('browser-sync'),
-    handleTaskConfig = require('../helpers/taskConfigHandler');
+'use strict';
 
-module.exports = function(config) {
-    config = handleTaskConfig('server', config);
+var gulp = require('gulp'),
+    browserSync = require('browser-sync');
 
-    gulp.task(config.taskName, function() {
-        browserSync(config.browserSync);
+gulp.task('server', function() {
+    return browserSync({
+        notify: false,
+        ui: false,
+        open: true,
+        server: {
+            directory: false,
+            baseDir: 'app/build/markup',
+            index: 'index.html',
+            routes: {
+                '/css/': 'app/build/css/',
+                '/js/': 'app/build/js/'
+            }
+        }
     });
-
-    return config;
-};
+});

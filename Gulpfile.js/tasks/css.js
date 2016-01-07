@@ -1,29 +1,30 @@
-var gulp             = require('gulp'),
-    gulpIf           = require('gulp-if'),
-    gulpSass         = require('gulp-sass'),
-    sourcemaps       = require('gulp-sourcemaps'),
-    autoprefixer     = require('gulp-autoprefixer'),
-    neat             = require('node-neat').includePaths,
-    path             = require('path'),
-    handleTaskConfig = require('../helpers/taskConfigHandler'),
-    handleErrors     = require('../helpers/errorsHandler'),
-    configGlob       = require('../config'),
-    isDev            = configGlob.isDev;
+'use strict';
 
-module.exports = function(config) {
-    config = handleTaskConfig('css', config);
+var gulp = require('gulp'),
+    path = require('path'),
+    gulpIf = require('gulp-if'),
+    gulpSass = require('gulp-sass'),
+    sourcemaps = require('gulp-sourcemaps'),
+    neat = require('node-neat').includePaths,
+    autoprefixer = require('gulp-autoprefixer'),
 
-    config.sass && (config.sass.includePaths = ['styles'].concat(neat));
+    handleErrors = require('../helpers').handleErrors,
 
-    gulp.task(config.taskName, function() {
-        return gulp.src(config.src)
-                .pipe(gulpIf(isDev, sourcemaps.init()))
-                .pipe(gulpSass(config.sass))
-                .on('error', handleErrors)
-                .pipe(autoprefixer(config.autoprefixer))
-                .pipe(gulpIf(isDev, sourcemaps.write()))
-                .pipe(gulp.dest(config.dest));
-    });
+    sassConfig = {
+        outputStyle: 'compressed',
+        includePaths: ['styles'].concat(neat)
+    },
 
-    return config;
-};
+    autoprefixerConfig = {
+        browsers: ['last 3 version']
+    };
+
+gulp.task('css', function() {
+    return gulp.src('app/css/**/*.scss')
+            .pipe(gulpIf(isDev, sourcemaps.init()))
+            .pipe(gulpSass(sassConfig))
+            .on('error', handleErrors)
+            .pipe(autoprefixer(autoprefixerConfig))
+            .pipe(gulpIf(isDev, sourcemaps.write()))
+            .pipe(gulp.dest('app/build/css'));
+});

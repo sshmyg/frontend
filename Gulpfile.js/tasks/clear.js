@@ -1,18 +1,15 @@
-var gulp             = require('gulp'),
-    gulpRimraf       = require('gulp-rimraf'),
-    handleTaskConfig = require('../helpers/taskConfigHandler');
+'use strict';
 
-module.exports = function(config) {
-    config = handleTaskConfig('clear', config);
+var gulp = require('gulp'),
+    gulpRimraf = require('gulp-rimraf');
 
-    gulp.task(config.taskName, function() {
-        return gulp.src(config.src, {
-                    read: false
-                })
-                .pipe(gulpRimraf({
-                    force: true
-                }));
-    });
-
-    return config;
-};
+gulp.task('clear', function() {
+    return gulp.src([
+                'app/build',
+                './node_modules',
+                'npm-debug.log'
+            ], {read: false})
+            .pipe(gulpRimraf({
+                force: true
+            }));
+});
