@@ -1,5 +1,13 @@
 import React from 'react';
+import {decorate as mixin} from 'react-mixin';
+import autobind from 'autobind-decorator'
 
+@autobind
+@mixin({
+    componentDidMount() {
+        console.log('componentDidMount mixin');
+    }
+})
 class ReactModule extends React.Component {
     constructor(props) {
         super(props);
@@ -16,6 +24,10 @@ class ReactModule extends React.Component {
     state = {
         name: 'Hello world - state'
     };
+
+    componentDidMount() {
+        console.log('componentDidMount native');
+    }
 
     render() {
         return (
