@@ -2,12 +2,14 @@ import React from 'react';
 import {decorate as mixin} from 'react-mixin';
 import autobind from 'autobind-decorator'
 
-@autobind
 @mixin({
     componentDidMount() {
         console.log('componentDidMount mixin');
     }
 })
+
+@autobind
+
 class ReactModule extends React.Component {
     constructor(props) {
         super(props);
@@ -29,10 +31,14 @@ class ReactModule extends React.Component {
         console.log('componentDidMount native');
     }
 
+    handleClick() {
+        console.log(this.props.name);
+    }
+
     render() {
         return (
             <div>
-                <p>{this.props.name}</p>
+                <p onClick={this.handleClick}>{this.props.name}</p>
                 <p>{this.state.name}</p>
             </div>
         );
