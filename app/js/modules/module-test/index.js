@@ -1,3 +1,5 @@
-module.exports = function () {
-    console.log( require('./templates/index.html'));
+import template from './templates/index.html'
+
+export default function() {
+    console.log(`Test module - ${template}`);
 }

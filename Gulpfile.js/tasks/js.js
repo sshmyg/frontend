@@ -39,15 +39,15 @@ var gulp = require('gulp'),
                     test: /\.html$/,
                     loader: 'html',
                     exclude: ['node_modules']
-                }
-                /*{
+                },
+                {
                     test: /\.js$/,
                     include: jsContext,
                     loader: 'babel',
                     query: {
-                        presets: ['es2015', 'stage-2']
+                        presets: ['es2015', 'react', 'stage-0'/*, 'stage-1', 'stage-2'*/]
                     }
-                }*/
+                }
             ]
         },
 
