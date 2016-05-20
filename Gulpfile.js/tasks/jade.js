@@ -13,13 +13,13 @@ gulp.task('jade', function() {
     var jadeData;
 
     try {
-        jadeData = JSON.parse(fs.readFileSync('app/build/json/common.json').toString());
+        jadeData = JSON.parse(fs.readFileSync('build/json/common.json').toString());
     } catch(e) {
-        jadeData = require('app/build/json/common.json');
+        jadeData = require('build/json/common.json');
     }
 
     return gulp.src('app/jade/**/*.jade')
-            .pipe(changed('app/build/markup', {
+            .pipe(changed('build/markup', {
                 extension: '.html'
             }))
             .pipe(gulpIf(global.useJadeCache, cached('jade')))
@@ -34,6 +34,6 @@ gulp.task('jade', function() {
                 locals: jadeData,
                 pretty: '\t'
             }))
-            .pipe(gulp.dest('app/build/markup'));
+            .pipe(gulp.dest('build/markup'));
 });
 

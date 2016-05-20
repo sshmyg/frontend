@@ -1,21 +1,23 @@
 'use strict';
 
 var gulp = require('gulp'),
-    browserSync = require('browser-sync');
+    browserSync = require('browser-sync'),
+    historyApiFallback = require('connect-history-api-fallback');
 
 gulp.task('server', function() {
     return browserSync({
         notify: false,
         ui: false,
-        open: true,
+        open: false,
         server: {
             directory: false,
-            baseDir: 'app/build/markup',
+            baseDir: 'build/markup',
             index: 'index.html',
             routes: {
-                '/css/': 'app/build/css/',
-                '/js/': 'app/build/js/'
-            }
+                '/css/': 'build/css/',
+                '/js/': 'build/js/'
+            },
+            middleware: [historyApiFallback()]
         }
     });
 });

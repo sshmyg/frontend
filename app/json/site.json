@@ -4,7 +4,7 @@
         "charset": "utf8",
         "lang": "en",
         "paths": {
-            "js": ["/js/vendors.min.js", "/js/common.min.js"],
+            "js": ["/js/common.react.min.js"],
             "css": ["/css/common.css"]
         }
     }

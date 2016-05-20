@@ -5,26 +5,24 @@ var gulp = require('gulp'),
     gulpIf = require('gulp-if'),
     gulpSass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
-    neat = require('node-neat').includePaths,
     autoprefixer = require('gulp-autoprefixer'),
 
     handleErrors = require('../helpers').handleErrors,
 
     sassConfig = {
-        outputStyle: 'compressed',
-        includePaths: ['styles'].concat(neat)
+        outputStyle: 'compressed'
     },
 
     autoprefixerConfig = {
-        browsers: ['last 3 version']
+        browsers: ['last 5 versions', 'ie 9']
     };
 
 gulp.task('css', function() {
-    return gulp.src('app/css/**/*.scss')
+    return gulp.src('app/css/**/*.{sass,scss}')
             .pipe(gulpIf(isDev, sourcemaps.init()))
             .pipe(gulpSass(sassConfig))
             .on('error', handleErrors)
             .pipe(autoprefixer(autoprefixerConfig))
             .pipe(gulpIf(isDev, sourcemaps.write()))
-            .pipe(gulp.dest('app/build/css'));
+            .pipe(gulp.dest('build/css'));
 });

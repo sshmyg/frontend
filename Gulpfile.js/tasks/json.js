@@ -8,5 +8,5 @@ var gulp = require('gulp'),
 gulp.task('json', function() {
     return gulp.src('app/json/**/*.json')
             .pipe(gulpExtend('common.json'))
-            .pipe(gulp.dest('app/build/json'));
+            .pipe(gulp.dest('build/json'));
 });

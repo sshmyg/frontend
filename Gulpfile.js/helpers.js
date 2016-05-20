@@ -1,5 +1,5 @@
 var gulpUtil = require('gulp-util'),
-    _        = require('lodash');
+    _ = require('lodash');
 
 //Handle errors
 module.exports.handleErrors = function() {

@@ -5,11 +5,11 @@ var gulp = require('gulp'),
 
 gulp.task('clear', function() {
     return gulp.src([
-                'app/build',
-                './node_modules',
-                'npm-debug.log'
-            ], {read: false})
-            .pipe(gulpRimraf({
-                force: true
-            }));
+        'build',
+        './node_modules',
+        'npm-debug.log'
+    ], {read: false})
+    .pipe(gulpRimraf({
+        force: true
+    }));
 });
