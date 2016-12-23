@@ -11,7 +11,7 @@ gulp.task('watch', function() {
         runSequence('jade', browserSync.reload);
     });
     
-    gulp.watch('app/css/**/*.scss', function() {
+    gulp.watch('app/css/**/*.{scss,sass}', function() {
         runSequence('css', browserSync.reload);
     });
 
