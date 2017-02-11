@@ -22,8 +22,9 @@ module.exports = {
     },
 
     output: {
-        path: path.join(__dirname, 'build/js'),
-        filename: '[name].js'
+        path: path.join(__dirname, 'build/'),
+        filename: '[name].js',
+        publicPath: '/build/',
     },
 
     resolve: {
@@ -80,7 +81,7 @@ module.exports = {
             }
         }),
         new ExtractTextPlugin({
-            filename: '../css/[name].css',
+            filename: '[name].css',
             allChunks: true
         }),
         new webpack.DefinePlugin({

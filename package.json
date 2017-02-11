@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "webpack --progress --watch",
-    "server": "node_modules/.bin/webpack-dev-server",
+    "server": "webpack-dev-server",
     "clear": "rm -rf build node_modules",
     "build": "NODE_ENV=production webpack --progress"
   },
