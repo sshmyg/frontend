@@ -1,4 +1,5 @@
-# Boilerplate jade, sass, js (webpack)...
+# Light boilerplate for react app
+## react, redux, sass, ducks structure
 
 ##Dependencies
 1. [nodejs](http://nodejs.org/)
@@ -10,10 +11,3 @@
     npm install &&
     npm start;
 ```
-
-##Features:
-1. Multiple bundles - every file from `entries` folder will be build into separate bundle.
-2. __SASS__ (`libsass`) for style.
-    - autoprefixer (vendor prefixer 3 latest browser version)
-3. __JADE__ for templating
-4. React, Redux or whatever you want

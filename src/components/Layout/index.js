@@ -2,15 +2,23 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
-import * as actions from 'actions/actionsComments';
+import './_layout.sass';
+
+import * as actions from 'redux/comments/actions';
 
 class Layout extends React.Component {
+    static propTypes = {
+        children: React.PropTypes.any
+    }
+
     render() {
+        let {children} = this.props;
+
         return (
             <div className="wrapper">
                 {
-                    this.props.children
-                    ? React.cloneElement(this.props.children, this.props)
+                    children
+                    ? React.cloneElement(children, this.props)
                     : null
                 }
             </div>
@@ -18,6 +26,7 @@ class Layout extends React.Component {
     }
 }
 
+//Container example, you can move this part into different file, to reuse it
 //Map state to props
 function mapStateToProps(state) {
     return {
