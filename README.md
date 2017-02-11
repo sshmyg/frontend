@@ -1,8 +1,6 @@
 # Light boilerplate for react app
-## react, redux, sass, ducks structure
 
-##Dependencies
-1. [nodejs](http://nodejs.org/)
+Includes: react, redux, sass, ducks :)
 
 ##Start:
 ```shell
