@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const jsCwd = path.join(process.cwd(), './src');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -43,8 +44,40 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ['babel-loader']
             },
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                                sourceMap: isDev
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                sourceMap: isDev
+                            }
+                        }
+                    ]
+                })
+            }
         ]
     },
+
+    plugins: [
+        new ExtractTextPlugin({
+            filename: 'bundle.css',
+            allChunks: true
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+            }
+        })
+    ],
 
     devServer: {
         contentBase: __dirname,

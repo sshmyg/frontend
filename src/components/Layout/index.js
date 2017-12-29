@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import * as actions from 'app/redux/comments/actions';
 
+import './layout.css';
+
 class Layout extends React.Component {
     static propTypes = {
         children: PropTypes.any
@@ -15,6 +17,7 @@ class Layout extends React.Component {
 
         return (
             <div className="wrapper">
+                <a href="#">Test link</a>
                 {
                     children
                         ? React.cloneElement(children, this.props)
