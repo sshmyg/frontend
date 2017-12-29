@@ -1,11 +1,9 @@
 'use strict';
 
-let path = require('path');
-let webpack = require('webpack');
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
-let autoprefixer = require('autoprefixer');
+const path = require('path');
+const webpack = require('webpack');
 
-let jsCWD = path.join(__dirname, './src');
+let jsCWD = path.join(__dirname, './js');
 let isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
@@ -18,7 +16,7 @@ module.exports = {
     },
 
     entry: {
-        'common': './entries/common'
+        'common': './app'
     },
 
     output: {
@@ -44,51 +42,8 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ['babel-loader']
             },
-            {
-                test: /\.(sass|scss)$/,
-                use: ExtractTextPlugin.extract({
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: isDev
-                            }
-                        },
-                        {
-                            loader: 'postcss-loader'
-                        },
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                outputStyle: isDev ? 'expanded' : 'compressed'
-                            }
-                        }
-                    ]
-                })
-            }
         ]
     },
-
-    plugins: [
-        new webpack.LoaderOptionsPlugin({
-            options: {
-                context: __dirname,
-                postcss: [
-                    autoprefixer({
-                        browsers: ['last 5 versions', 'ie 9']
-                    })
-                ]
-            }
-        }),
-        new ExtractTextPlugin({
-            filename: '[name].css',
-            allChunks: true
-        }),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-        }),
-        new webpack.NoEmitOnErrorsPlugin()
-    ],
 
     devServer: {
         contentBase: __dirname,
