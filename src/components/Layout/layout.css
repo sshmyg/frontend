@@ -1,7 +1,13 @@
+:root {
+    --color-bg: lightgrey;
+    --color-link: rgb(245, 100, 17);
+    --color-main: yellow;
+}
+
 body {
-    background-color:grey;
+    background-color: var(--color-bg);
 
     a {
-        color: green;
+        color: var(--color-link);
     }
 }
