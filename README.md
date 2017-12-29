@@ -1,6 +1,6 @@
 # Light boilerplate for react app
 
-Includes: react, redux, sass, ducks :)
+Includes: react, redux, ducks :)
 
 ##Start:
 ```shell
