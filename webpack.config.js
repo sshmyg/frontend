@@ -3,31 +3,32 @@
 const path = require('path');
 const webpack = require('webpack');
 
-let jsCWD = path.join(__dirname, './js');
-let isDev = process.env.NODE_ENV !== 'production';
+const jsCwd = path.join(process.cwd(), './src');
+const isDev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-    context: jsCWD,
+    context: jsCwd,
     cache: true,
     devtool: isDev ? 'cheap-inline-module-sourcemap' : 'hidden',
+    entry: './index.js',
 
     watchOptions: {
-        aggregateTimeout: 100
-    },
-
-    entry: {
-        'common': './app'
+        aggregateTimeout: 100,
+        poll: true
     },
 
     output: {
-        path: path.join(__dirname, 'build/'),
-        filename: '[name].js',
+        path: path.join(process.cwd(), 'build'),
+        filename: 'bundle.js',
         publicPath: '/build/',
     },
 
     resolve: {
-        modules: [path.join(jsCWD), 'node_modules'],
+        modules: ['node_modules'],
         extensions: ['.js', '.jsx'],
+        alias: {
+            'app': path.join(jsCwd)
+        }
     },
 
     stats: {

@@ -1,9 +1,18 @@
 import React from 'react';
-import {Router, Route} from 'react-router';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
+import {
+    Router,
+    Route
+} from 'react-router';
 
-import Layout from 'components/Layout';
-import store, {history} from 'store';
+import getStore from 'app/redux/createStore';
+
+import Layout from 'app/components/Layout';
+
+const {
+    store,
+    history
+} = getStore();
 
 export default (
     <Provider store={store}>

@@ -1,14 +1,13 @@
 import React from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-import './_layout.sass';
-
-import * as actions from 'redux/comments/actions';
+import * as actions from 'app/redux/comments/actions';
 
 class Layout extends React.Component {
     static propTypes = {
-        children: React.PropTypes.any
+        children: PropTypes.any
     }
 
     render() {
@@ -18,23 +17,20 @@ class Layout extends React.Component {
             <div className="wrapper">
                 {
                     children
-                    ? React.cloneElement(children, this.props)
-                    : null
+                        ? React.cloneElement(children, this.props)
+                        : null
                 }
             </div>
         );
     }
 }
 
-//Container example, you can move this part into different file, to reuse it
-//Map state to props
 function mapStateToProps(state) {
     return {
         comments: state.comments
     };
 }
 
-//Map actions to props
 function mapDispachToProps(dispatch) {
     return bindActionCreators(actions, dispatch);
 }
