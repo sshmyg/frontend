@@ -10,5 +10,5 @@ Thumbs.db
 node_modules/*
 .sass-cache
 
-build
+dest
 

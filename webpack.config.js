@@ -18,9 +18,9 @@ module.exports = {
     },
 
     output: {
-        path: path.join(process.cwd(), 'build'),
+        path: path.join(process.cwd(), 'dest'),
         filename: 'bundle.js',
-        publicPath: '/build/',
+        publicPath: '/dest/',
     },
 
     resolve: {
