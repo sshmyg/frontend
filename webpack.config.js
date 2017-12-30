@@ -47,7 +47,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
+                use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                     use: [
                         {
                             loader: 'css-loader',
@@ -63,7 +63,7 @@ module.exports = {
                             }
                         }
                     ]
-                })
+                }))
             }
         ]
     },
