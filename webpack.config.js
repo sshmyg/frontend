@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const jsCwd = path.join(process.cwd(), './src');
 const isDev = process.env.NODE_ENV !== 'production';
+const bundleName = 'bundle.js';
 
 module.exports = {
     context: jsCwd,
@@ -20,7 +21,7 @@ module.exports = {
 
     output: {
         path: path.join(process.cwd(), 'dest'),
-        filename: 'bundle.js',
+        filename: bundleName,
         publicPath: '/dest/',
     },
 
@@ -68,6 +69,7 @@ module.exports = {
     },
 
     plugins: [
+        new webpack.NamedModulesPlugin(),
         new ExtractTextPlugin({
             filename: 'bundle.css',
             allChunks: true
@@ -82,7 +84,14 @@ module.exports = {
     devServer: {
         contentBase: __dirname,
         historyApiFallback: true,
-        open: true
+        open: true,
+        hot: true,
+        compress: true,
+        inline: true,
+        stats: {
+            modules: false,
+            hash: false
+        }
     }
 };
 
@@ -96,5 +105,9 @@ if (!isDev) {
                 unsafe: true
             }
         })
+    );
+} else {
+    module.exports.plugins.push(
+        new webpack.HotModuleReplacementPlugin()
     );
 }
