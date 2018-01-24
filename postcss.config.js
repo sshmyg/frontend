@@ -6,12 +6,7 @@ module.exports = ({ file, options, env }) => ({
         },
         'postcss-nested': {},
         'postcss-cssnext': {
-            browsers: ['last 2 versions'],
-            features: {
-                customProperties: {
-                    preserve: true
-                }
-            }
+            browsers: ['last 2 versions']
         }
     }
 });
