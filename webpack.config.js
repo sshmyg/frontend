@@ -2,7 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const jsCwd = path.join(process.cwd(), './src');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -91,6 +91,9 @@ module.exports = {
         stats: {
             modules: false,
             hash: false
+        },
+        watchOptions: {
+            ignored: /node_modules/
         }
     }
 };
