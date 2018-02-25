@@ -1,17 +1,24 @@
 {
     "presets": [
-        "es2015",
+        [
+            "env",
+            {
+                "useBuiltIns": "entry"
+            }
+        ],
         "react",
-        "stage-0",
-        "stage-1",
-        "stage-2"
+        "stage-0"
     ],
     "plugins": [
-        "transform-decorators-legacy"
+        "transform-react-pure-class-to-function",
+        "transform-class-properties",
+        "transform-async-to-generator"
     ],
     "env": {
         "development": {
-            "plugins": []
+            "plugins": [
+                "transform-react-jsx-source"
+            ]
         },
         "production": {
             "plugins": [
