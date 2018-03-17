@@ -9,6 +9,6 @@ ehthumbs.db
 Thumbs.db
 node_modules/*
 .sass-cache
-
+yarn-error.log
 dest
 
