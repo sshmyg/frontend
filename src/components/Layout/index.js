@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -7,9 +7,9 @@ import * as actions from 'app/redux/comments/actions';
 
 import './layout.css';
 
-class Layout extends React.Component {
+class Layout extends Component {
     static propTypes = {
-        children: PropTypes.any
+        children: PropTypes.node
     }
 
     render() {
