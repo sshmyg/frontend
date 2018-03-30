@@ -49,6 +49,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
+                    'css-hot-loader',
                     MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
