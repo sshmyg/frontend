@@ -2,7 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const jsCwd = path.join(process.cwd(), './src');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -10,9 +10,10 @@ const bundleName = 'bundle.js';
 
 module.exports = {
     context: jsCwd,
-    cache: true,
+    cache: isDev,
     devtool: isDev ? 'cheap-inline-module-sourcemap' : 'hidden',
     entry: './index.js',
+    mode: isDev ? 'development' : 'production',
 
     watchOptions: {
         aggregateTimeout: 100,
@@ -47,32 +48,31 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-                    use: [
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                importLoaders: 1,
-                                sourceMap: isDev
-                            }
-                        },
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                sourceMap: isDev
-                            }
+                use: [
+                    'css-hot-loader',
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            sourceMap: isDev
                         }
-                    ]
-                }))
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: isDev
+                        }
+                    }
+                ]
             }
         ]
     },
 
     plugins: [
         new webpack.NamedModulesPlugin(),
-        new ExtractTextPlugin({
-            filename: 'bundle.css',
-            allChunks: true
+        new MiniCssExtractPlugin({
+            filename: 'bundle.css'
         }),
         new webpack.DefinePlugin({
             'process.env': {
@@ -98,7 +98,13 @@ module.exports = {
     }
 };
 
-if (!isDev) {
+if (isDev) {
+    module.exports.plugins.push(
+        new webpack.HotModuleReplacementPlugin()
+    );
+}
+
+/* if (!isDev) {
     module.exports.plugins.push(
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: false,
@@ -109,8 +115,4 @@ if (!isDev) {
             }
         })
     );
-} else {
-    module.exports.plugins.push(
-        new webpack.HotModuleReplacementPlugin()
-    );
-}
+} */
