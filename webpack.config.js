@@ -3,6 +3,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const WebpackBar = require('webpackbar');
 
 const jsCwd = path.join(process.cwd(), './src');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -14,6 +17,11 @@ module.exports = {
     devtool: isDev ? 'cheap-inline-module-sourcemap' : 'hidden',
     entry: './index.js',
     mode: isDev ? 'development' : 'production',
+
+    stats: {
+        warnings: false,
+        children: false
+    },
 
     watchOptions: {
         aggregateTimeout: 100,
@@ -32,10 +40,6 @@ module.exports = {
         alias: {
             'app': path.join(jsCwd)
         }
-    },
-
-    stats: {
-        warnings: false
     },
 
     module: {
@@ -89,8 +93,10 @@ module.exports = {
         compress: true,
         inline: true,
         stats: {
+            warnings: false,
             modules: false,
-            hash: false
+            hash: false,
+            children: false
         },
         watchOptions: {
             ignored: /node_modules/
@@ -100,19 +106,25 @@ module.exports = {
 
 if (isDev) {
     module.exports.plugins.push(
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new WebpackBar()
     );
+} else {
+    module.exports.optimization = {
+        minimizer: [
+            new UglifyJSPlugin({
+                uglifyOptions: {
+                    beautify: false,
+                    mangle: {
+                        keep_fnames: true
+                    },
+                    compress: {
+                        drop_console: false
+                    },
+                    comments: false
+                }
+            }),
+            new OptimizeCSSAssetsPlugin({})
+        ]
+    };
 }
-
-/* if (!isDev) {
-    module.exports.plugins.push(
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: false,
-            compress: {
-                warnings: false,
-                drop_console: true,
-                unsafe: true
-            }
-        })
-    );
-} */
