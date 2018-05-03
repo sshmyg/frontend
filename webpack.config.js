@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const WebpackBar = require('webpackbar');
 
 const jsCwd = path.join(process.cwd(), './src');
 const isDev = process.env.NODE_ENV !== 'production';
@@ -106,8 +105,7 @@ module.exports = {
 
 if (isDev) {
     module.exports.plugins.push(
-        new webpack.HotModuleReplacementPlugin(),
-        new WebpackBar()
+        new webpack.HotModuleReplacementPlugin()
     );
 } else {
     module.exports.optimization = {
