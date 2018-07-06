@@ -17,3 +17,15 @@ injectGlobal`
         color: var(--link-text-color);
     }
 `;
+
+export const StyledWrapper = styled.div`
+    padding: 0 20%;
+
+    & section {
+        margin-bottom: 50px;
+    }
+
+    & p {
+        margin: 0 0 20px;
+    }
+`;

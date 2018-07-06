@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import * as actions from 'app/redux/comments/actions';
 
-import './style';
+import { StyledWrapper } from './style';
 
 class Layout extends Component {
     static propTypes = {
@@ -20,7 +20,7 @@ class Layout extends Component {
         } = this.props;
 
         return (
-            <div className="wrapper">
+            <StyledWrapper>
                 {
                     children || (
                         <Fragment>
@@ -35,7 +35,7 @@ class Layout extends Component {
                         </Fragment>
                     )
                 }
-            </div>
+            </StyledWrapper>
         );
     }
 }
