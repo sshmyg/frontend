@@ -1,27 +1,39 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actions from 'app/redux/comments/actions';
 
-import './layout.css';
+import './style';
 
 class Layout extends Component {
     static propTypes = {
-        children: PropTypes.node
+        children: PropTypes.node,
+        comments: PropTypes.array
     }
 
     render() {
-        let {children} = this.props;
+        const {
+            children,
+            comments
+        } = this.props;
 
         return (
             <div className="wrapper">
-                <a href="#">Test link</a>
                 {
-                    children
-                        ? React.cloneElement(children, this.props)
-                        : null
+                    children || (
+                        <Fragment>
+                            {
+                                comments.map((c, i) => (
+                                    <section key={i}>
+                                        <p>{ c.content }</p>
+                                        <a href="#">{ c.name }</a>
+                                    </section>
+                                ))
+                            }
+                        </Fragment>
+                    )
                 }
             </div>
         );
@@ -38,6 +50,4 @@ function mapDispachToProps(dispatch) {
     return bindActionCreators(actions, dispatch);
 }
 
-const LayoutConnected = connect(mapStateToProps, mapDispachToProps)(Layout);
-
-export default LayoutConnected;
+export default connect(mapStateToProps, mapDispachToProps)(Layout);

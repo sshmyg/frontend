@@ -2,8 +2,6 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const jsCwd = path.join(process.cwd(), './src');
@@ -48,35 +46,12 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    'css-hot-loader',
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                            sourceMap: isDev
-                        }
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: isDev
-                        }
-                    }
-                ]
             }
         ]
     },
 
     plugins: [
         new webpack.NamedModulesPlugin(),
-        new MiniCssExtractPlugin({
-            filename: 'bundle.css'
-        }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
@@ -121,8 +96,7 @@ if (isDev) {
                     },
                     comments: false
                 }
-            }),
-            new OptimizeCSSAssetsPlugin({})
+            })
         ]
     };
 }
