@@ -1,4 +1,6 @@
 import React from 'react';
+import toJson from 'enzyme-to-json';
+
 import Button from 'app/components/Button';
 
 /* global shallow */
@@ -27,5 +29,11 @@ describe('<Button />', () => {
         const testText = 'test text';
         const wrapper = shallow(<Button>{ testText }</Button>);
         expect(wrapper.find('button').text()).toBe(testText);
+    });
+
+    it('should matches the snapshot', () => {
+        const testText = 'test text for snapshot';
+        const tree = shallow(<Button>{ testText }</Button>);
+        expect(toJson(tree)).toMatchSnapshot();
     });
 });
