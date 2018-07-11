@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 
 import * as actions from 'app/redux/comments/actions';
 
+import Button from 'app/components/Button';
+
 import { StyledWrapper } from './style';
 
 class Layout extends Component {
@@ -29,6 +31,7 @@ class Layout extends Component {
                                     <section key={i}>
                                         <p>{ c.content }</p>
                                         <a href="#">{ c.name }</a>
+                                        <Button onClick={() => {alert('Button clicked')}}>Click me</Button>
                                     </section>
                                 ))
                             }

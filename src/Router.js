@@ -4,7 +4,7 @@ import {
     Route
 } from 'react-router';
 
-import Layout from 'app/components/Layout';
+import Layout from 'app/pages/Layout';
 
 export default function RouterWrapper({ history }) {
     return (
