@@ -3,7 +3,7 @@ import toJson from 'enzyme-to-json';
 
 import Button from 'app/components/Button';
 
-/* global shallow */
+/* global shallow, jest */
 describe('<Button />', () => {
     it('should render Button', () => {
         const wrapper = shallow(<Button />);
@@ -35,5 +35,13 @@ describe('<Button />', () => {
         const testText = 'test text for snapshot';
         const tree = shallow(<Button>{ testText }</Button>);
         expect(toJson(tree)).toMatchSnapshot();
+    });
+
+    it('should onClick works', () => {
+        const handleClick = jest.fn();
+        const wrapper = shallow(<Button onClick={handleClick} />);
+
+        wrapper.find('button').simulate('click');
+        expect(handleClick).toHaveBeenCalled();
     });
 });

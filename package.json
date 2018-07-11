@@ -1,84 +1,58 @@
 {
-    "author": "Serhey Shmyg",
-    "name": "frontend",
-    "version": "4.3.0",
-    "homepage": "https://github.com/serheyShmyg/",
-    "license": "ISC",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/serheyShmyg/frontend"
-    },
-    "scripts": {
-        "start": "npx webpack --progress --watch --hide-modules",
-        "dev": "npx webpack-dev-server --color",
-        "clear": "rm -rf dest node_modules",
-        "build": "NODE_ENV=production npx webpack --progress --hide-modules",
-        "test": "jest",
-        "test:watch": "jest --watch",
-        "test:coverage": "jest --coverage"
-    },
-    "devDependencies": {
-        "babel-core": "^6.26.3",
-        "babel-jest": "23.4.0",
-        "babel-loader": "^7.1.5",
-        "babel-plugin-transform-async-to-generator": "^6.24.1",
-        "babel-plugin-transform-class-properties": "^6.24.1",
-        "babel-plugin-transform-es2015-classes": "^6.24.1",
-        "babel-plugin-transform-react-constant-elements": "^6.23.0",
-        "babel-plugin-transform-react-inline-elements": "^6.22.0",
-        "babel-plugin-transform-react-jsx-source": "^6.22.0",
-        "babel-plugin-transform-react-pure-class-to-function": "^1.0.1",
-        "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
-        "babel-preset-env": "^1.7.0",
-        "babel-preset-react": "^6.24.1",
-        "babel-preset-stage-0": "^6.24.1",
-        "enzyme": "3.3.0",
-        "enzyme-adapter-react-16": "1.1.1",
-        "enzyme-to-json": "3.3.4",
-        "jest": "23.4.0",
-        "regenerator-runtime": "0.12.0",
-        "uglifyjs-webpack-plugin": "1.2.7",
-        "webpack": "^4.16.0",
-        "webpack-cli": "3.0.8",
-        "webpack-dev-server": "^3.1.4"
-    },
-    "dependencies": {
-        "babel-polyfill": "^6.26.0",
-        "prop-types": "^15.6.2",
-        "react": "^16.4.1",
-        "react-dom": "^16.4.1",
-        "react-redux": "^5.0.7",
-        "react-router": "^3.2.1",
-        "react-router-redux": "^4.0.8",
-        "redux": "^4.0.0",
-        "redux-logger": "^3.0.6",
-        "redux-thunk": "^2.3.0",
-        "styled-components": "3.3.3"
-    },
-    "jest": {
-        "setupFiles": [
-            "./test/jest.conf.js"
-        ],
-        "coverageThreshold": {
-            "global": {
-                "statements": 80
-            }
-        },
-        "coveragePathIgnorePatterns": [
-            "/node_modules/"
-        ],
-        "testPathIgnorePatterns": [
-            "<rootDir>/node_modules/",
-            "__mock__",
-            "__drafts__",
-            "__fixtures__"
-        ],
-        "moduleNameMapper": {
-            "^app/(.*)$": "<rootDir>/src/$1"
-        },
-        "unmockedModulePathPatterns": [
-            "node_modules/react/",
-            "node_modules/enzyme/"
-        ]
-    }
+  "author": "Serhey Shmyg",
+  "name": "frontend",
+  "version": "4.3.0",
+  "homepage": "https://github.com/serheyShmyg/",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/serheyShmyg/frontend"
+  },
+  "scripts": {
+    "start": "npx webpack --progress --watch --hide-modules",
+    "dev": "npx webpack-dev-server --color",
+    "clear": "rm -rf dest node_modules",
+    "build": "NODE_ENV=production npx webpack --progress --hide-modules",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "23.4.0",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "babel-plugin-transform-react-constant-elements": "^6.23.0",
+    "babel-plugin-transform-react-inline-elements": "^6.22.0",
+    "babel-plugin-transform-react-jsx-source": "^6.22.0",
+    "babel-plugin-transform-react-pure-class-to-function": "^1.0.1",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.13",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "3.3.4",
+    "jest": "23.4.0",
+    "regenerator-runtime": "0.12.0",
+    "uglifyjs-webpack-plugin": "1.2.7",
+    "webpack": "^4.16.0",
+    "webpack-cli": "3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router": "^3.2.1",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "3.3.3"
+  }
 }
