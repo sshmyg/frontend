@@ -1,7 +1,5 @@
 
 import thunk from 'redux-thunk';
-import { syncHistoryWithStore } from 'react-router-redux';
-import { browserHistory } from 'react-router';
 import { createLogger } from 'redux-logger';
 import {
     createStore,
@@ -25,10 +23,8 @@ export default function(rootReducer = getReducers()) {
         rootReducer,
         applyMiddleware(...middlewares)
     );
-    const history = syncHistoryWithStore(browserHistory, store);
 
     return {
-        store,
-        history
+        store
     };
 }

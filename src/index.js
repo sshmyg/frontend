@@ -5,14 +5,14 @@ import { Provider } from 'react-redux';
 
 import getStore from 'app/redux/createStore';
 
-const { store, history } = getStore();
+const { store } = getStore();
 const rootEl = document.getElementById('root');
 const render = () => {
     const Router = require('./Router').default;
 
     ReactDOM.render(
         <Provider store={store}>
-            <Router history={history} />
+            <Router />
         </Provider>,
         rootEl
     );

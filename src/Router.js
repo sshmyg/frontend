@@ -1,17 +1,15 @@
 import React from 'react';
-import {
-    Router,
-    Route
-} from 'react-router';
+import { Router } from '@reach/router';
 
 import Layout from 'app/pages/Layout';
+import TestPage from 'app/pages/TestPage';
 
-export default function RouterWrapper({ history }) {
+export default function RouterWrapper() {
     return (
-        <Router history={history}>
-            <Route path="/" component={Layout}>
-
-            </Route>
+        <Router>
+            <Layout path="/">
+                <TestPage path="test-page" />
+            </Layout>
         </Router>
     );
 }

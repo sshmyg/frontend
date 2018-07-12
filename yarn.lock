@@ -16,6 +16,16 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
+"@reach/router@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@reach/router/-/router-1.1.1.tgz#24a5b20f1cc9e55e2cbcdc454fb82c94db479a81"
+  dependencies:
+    create-react-context "^0.2.1"
+    invariant "^2.2.3"
+    prop-types "^15.6.1"
+    react-lifecycles-compat "^3.0.4"
+    warning "^3.0.0"
+
 "@types/node@*":
   version "10.5.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.2.tgz#f19f05314d5421fe37e74153254201a7bf00a707"
@@ -1742,13 +1752,12 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@^15.5.1:
-  version "15.6.3"
-  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
+create-react-context@^0.2.1:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.2.tgz#9836542f9aaa22868cd7d4a6f82667df38019dca"
   dependencies:
-    fbjs "^0.8.9"
-    loose-envify "^1.3.1"
-    object-assign "^4.1.1"
+    fbjs "^0.8.0"
+    gud "^1.0.0"
 
 cross-spawn@^5.0.1:
   version "5.1.0"
@@ -2472,7 +2481,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.16, fbjs@^0.8.5, fbjs@^0.8.9:
+fbjs@^0.8.0, fbjs@^0.8.16, fbjs@^0.8.5:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.17.tgz#c4d598ead6949112653d6588b01a5cdcd9f90fdd"
   dependencies:
@@ -2665,8 +2674,8 @@ gauge@~2.7.3:
     wide-align "^1.1.0"
 
 get-caller-file@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.2.tgz#f702e63127e7e231c160a80c1554acb70d5047e5"
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
 
 get-stdin@^4.0.1:
   version "4.0.1"
@@ -2742,6 +2751,10 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2:
 growly@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
+
+gud@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gud/-/gud-1.0.0.tgz#a489581b17e6a70beca9abe3ae57de7a499852c0"
 
 handle-thing@^1.2.5:
   version "1.2.5"
@@ -2837,15 +2850,6 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-history@^3.0.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/history/-/history-3.3.0.tgz#fcedcce8f12975371545d735461033579a6dae9c"
-  dependencies:
-    invariant "^2.2.1"
-    loose-envify "^1.2.0"
-    query-string "^4.2.2"
-    warning "^3.0.0"
-
 hmac-drbg@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/hmac-drbg/-/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -2854,7 +2858,7 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
+hoist-non-react-statics@^2.5.0:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
@@ -3046,7 +3050,7 @@ interpret@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.1.0.tgz#7ed1b1410c6a0e0f78cf95d3b8440c63f78b8614"
 
-invariant@^2.0.0, invariant@^2.2.1, invariant@^2.2.2:
+invariant@^2.0.0, invariant@^2.2.2, invariant@^2.2.3:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   dependencies:
@@ -3903,7 +3907,7 @@ longest@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/longest/-/longest-1.0.1.tgz#30a0b2da38f73770e8294a0d22e6625ed77d0097"
 
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1:
+loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.3.1:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   dependencies:
@@ -4764,7 +4768,7 @@ prompts@^0.1.9:
     clorox "^1.0.3"
     sisteransi "^0.1.1"
 
-prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.6.0, prop-types@^15.6.2:
+prop-types@^15.5.4, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.2.tgz#05d5ca77b4453e985d60fc7ff8c859094a497102"
   dependencies:
@@ -4834,13 +4838,6 @@ qs@6.5.1:
 qs@~6.5.1:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
-
-query-string@^4.2.2:
-  version "4.3.4"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-4.3.4.tgz#bbb693b9ca915c232515b228b1a02b609043dbeb"
-  dependencies:
-    object-assign "^4.1.0"
-    strict-uri-encode "^1.0.0"
 
 querystring-es3@^0.2.0:
   version "0.2.1"
@@ -4927,6 +4924,10 @@ react-is@^16.3.1, react-is@^16.4.1:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.1.tgz#d624c4650d2c65dbd52c72622bbf389435d9776e"
 
+react-lifecycles-compat@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
 react-reconciler@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.7.0.tgz#9614894103e5f138deeeb5eabaf3ee80eb1d026d"
@@ -4946,22 +4947,6 @@ react-redux@^5.0.7:
     lodash-es "^4.17.5"
     loose-envify "^1.1.0"
     prop-types "^15.6.0"
-
-react-router-redux@^4.0.8:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/react-router-redux/-/react-router-redux-4.0.8.tgz#227403596b5151e182377dab835b5d45f0f8054e"
-
-react-router@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-3.2.1.tgz#b9a3279962bdfbe684c8bd0482b81ef288f0f244"
-  dependencies:
-    create-react-class "^15.5.1"
-    history "^3.0.0"
-    hoist-non-react-statics "^2.3.1"
-    invariant "^2.2.1"
-    loose-envify "^1.2.0"
-    prop-types "^15.5.6"
-    warning "^3.0.0"
 
 react-test-renderer@^16.0.0-0:
   version "16.4.1"
@@ -5636,10 +5621,6 @@ stream-http@^2.7.2:
 stream-shift@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
-
-strict-uri-encode@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz#279b225df1d582b1f54e65addd4352e18faa0713"
 
 string-length@^2.0.0:
   version "2.0.0"
