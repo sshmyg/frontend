@@ -1,7 +1,7 @@
 {
   "author": "Serhey Shmyg",
   "name": "frontend",
-  "version": "4.4.0",
+  "version": "4.5.0",
   "homepage": "https://github.com/serheyShmyg/",
   "license": "ISC",
   "repository": {
@@ -15,7 +15,9 @@
     "build": "NODE_ENV=production npx webpack --progress --hide-modules",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -32,6 +34,8 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "docz": "0.5.8",
+    "docz-plugin-babel6": "0.5.7",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
     "enzyme-to-json": "3.3.4",
