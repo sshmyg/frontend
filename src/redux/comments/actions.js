@@ -1,8 +1,8 @@
-import {ADD_COMMENT} from './constants';
+import c from './constants';
 
 export function actionCommentAdd(text) {
     return {
-        type: ADD_COMMENT,
+        type: c.ADD_COMMENT,
         text
     };
 }

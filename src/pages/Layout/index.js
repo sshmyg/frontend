@@ -21,7 +21,8 @@ function mapDispachToProps(dispatch) {
 
 function Layout({
     children,
-    comments
+    comments,
+    actionCommentAdd
 }) {
     return (
         <StyledWrapper>
@@ -31,7 +32,7 @@ function Layout({
                     <section key={i}>
                         <p>{ c.content }</p>
                         <a href="#">{ c.name }</a>
-                        <Button onClick={() => {alert('Button clicked')}}>Click me</Button>
+                        <Button onClick={() => {actionCommentAdd(`Text ${i}`);}}>Click me</Button>
                     </section>
                 ))
             }
