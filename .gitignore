@@ -11,4 +11,4 @@ node_modules/*
 .sass-cache
 yarn-error.log
 dest
-
+coverage

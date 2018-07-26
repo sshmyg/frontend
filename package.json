@@ -1,7 +1,7 @@
 {
     "author": "Serhey Shmyg",
     "name": "frontend",
-    "version": "4.5.1",
+    "version": "4.5.2",
     "homepage": "https://github.com/serheyShmyg/",
     "license": "ISC",
     "repository": {
@@ -13,9 +13,8 @@
         "dev": "npx webpack-dev-server --color",
         "clear": "rm -rf dest node_modules",
         "build": "NODE_ENV=production npx webpack --progress --hide-modules",
-        "test": "jest",
+        "test": "jest --coverage",
         "test:watch": "jest --watch",
-        "test:coverage": "jest --coverage",
         "docz:dev": "docz dev",
         "docz:build": "docz build"
     },
