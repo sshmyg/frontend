@@ -10,9 +10,9 @@
 
 ## Start:
 ```shell
-    git clone https://github.com/serheyShmyg/frontend.git &&
-    cd frontend &&
-    npm install &&
+    git clone https://github.com/serheyShmyg/frontend.git && \
+    cd frontend && \
+    npm install && \
     npm start;
 ```
 
