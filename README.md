@@ -26,4 +26,4 @@
 
 ## Polifills
 If you want to use some exotic ES features and search some polifill, you can use [core-js](https://github.com/zloirock/core-js) as described here [https://babeljs.io/docs/en/v7-migration](https://babeljs.io/docs/en/v7-migration).
-By default boilerplate doesn't includes any polifills, to reduce bandle size.
+By default boilerplate doesn't includes any polifills, to reduce bundle size.
