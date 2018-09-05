@@ -1,7 +1,7 @@
 {
     "author": "Serhey Shmyg",
     "name": "frontend",
-    "version": "4.5.3",
+    "version": "4.6.0",
     "homepage": "https://github.com/serheyShmyg/",
     "license": "ISC",
     "repository": {
@@ -9,13 +9,12 @@
         "url": "https://github.com/serheyShmyg/frontend"
     },
     "scripts": {
-        "start": "npx webpack --progress --watch --hide-modules",
-        "dev": "npx webpack-dev-server --color",
-        "clear": "rm -rf dest node_modules",
+        "start": "npx webpack-dev-server --color",
         "build": "NODE_ENV=production npx webpack --progress --hide-modules",
+        "clear": "rm -rf dest node_modules",
         "test": "jest --coverage",
         "test:watch": "jest --watch --coverage",
-        "docz:dev": "docz dev",
+        "docz": "docz dev",
         "docz:build": "docz build"
     },
     "devDependencies": {
@@ -33,10 +32,9 @@
         "babel-loader": "^8.0.2",
         "babel-plugin-transform-react-class-to-function": "1.1.2",
         "babel-plugin-transform-react-remove-prop-types": "^0.4.15",
-        "regenerator-runtime": "0.12.1",
         "babel-jest": "23.4.2",
         "jest": "23.5.0",
-        "enzyme": "3.5.1",
+        "enzyme": "3.6.0",
         "enzyme-adapter-react-16": "1.4.0",
         "enzyme-to-json": "3.3.4",
         "webpack": "^4.17.2",
@@ -46,7 +44,6 @@
         "docz": "0.11.0"
     },
     "dependencies": {
-        "@babel/polyfill": "^7.0.0",
         "prop-types": "^15.6.2",
         "react": "^16.4.2",
         "react-dom": "^16.4.2",
