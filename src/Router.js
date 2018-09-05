@@ -1,15 +1,27 @@
 import React from 'react';
-import { Router } from '@reach/router';
+import {
+    BrowserRouter,
+    Route,
+    Switch
+} from 'react-router-dom';
 
 import Layout from 'app/pages/Layout';
 import TestPage from 'app/pages/TestPage';
 
 export default function RouterWrapper() {
     return (
-        <Router>
-            <Layout path="/">
-                <TestPage path="test-page" />
-            </Layout>
-        </Router>
+        <BrowserRouter>
+            <Switch>
+                <Route path="/">
+                    {
+                        props => (
+                            <Layout {...props}>
+                                <Route path="/test-page" component={TestPage} />
+                            </Layout>
+                        )
+                    }
+                </Route>
+            </Switch>
+        </BrowserRouter>
     );
 }
