@@ -27,7 +27,9 @@ module.exports = {
 
     output: {
         path: path.join(process.cwd(), 'dest'),
-        filename: bundleName,
+        filename: chunkData => {
+            return chunkData.chunk.name === 'main' ? bundleName : '[name].js';
+        },
         publicPath: '/dest/',
     },
 
@@ -36,6 +38,19 @@ module.exports = {
         extensions: ['.js', '.jsx'],
         alias: {
             'app': path.join(jsCwd)
+        }
+    },
+
+    optimization: {
+        namedChunks: true,
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
         }
     },
 
@@ -83,20 +98,18 @@ if (isDev) {
         new webpack.HotModuleReplacementPlugin()
     );
 } else {
-    module.exports.optimization = {
-        minimizer: [
-            new UglifyJSPlugin({
-                uglifyOptions: {
-                    beautify: false,
-                    mangle: {
-                        keep_fnames: true
-                    },
-                    compress: {
-                        drop_console: false
-                    },
-                    comments: false
-                }
-            })
-        ]
-    };
+    module.exports.optimization.minimizer = [
+        new UglifyJSPlugin({
+            uglifyOptions: {
+                beautify: false,
+                mangle: {
+                    keep_fnames: true
+                },
+                compress: {
+                    drop_console: false
+                },
+                comments: false
+            }
+        })
+    ];
 }
