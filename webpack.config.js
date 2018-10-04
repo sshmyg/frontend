@@ -30,7 +30,7 @@ module.exports = {
         filename: chunkData => {
             return chunkData.chunk.name === 'main' ? bundleName : '[name].js';
         },
-        publicPath: '/dest/',
+        publicPath: '/dest/'
     },
 
     resolve: {
@@ -77,6 +77,8 @@ module.exports = {
     devServer: {
         contentBase: __dirname,
         historyApiFallback: true,
+        host: '127.0.0.1',
+        publicPath: '/dest/',
         open: true,
         hot: true,
         compress: true,
