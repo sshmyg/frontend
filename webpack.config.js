@@ -104,13 +104,11 @@ if (isDev) {
         new UglifyJSPlugin({
             uglifyOptions: {
                 beautify: false,
-                mangle: {
-                    keep_fnames: true
-                },
                 compress: {
                     drop_console: false
                 },
-                comments: false
+                comments: false,
+                keep_fnames: false
             }
         })
     ];
