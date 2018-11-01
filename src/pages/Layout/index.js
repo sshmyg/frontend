@@ -7,7 +7,7 @@ import * as actions from 'app/redux/comments/actions';
 
 import Button from 'app/components/Button';
 
-import { StyledWrapper } from './style';
+import StyledComponent, { Globals } from './style';
 
 function mapStateToProps(state) {
     return {
@@ -25,7 +25,7 @@ function Layout({
     actionCommentAdd
 }) {
     return (
-        <StyledWrapper>
+        <StyledComponent>
             <Link to="/test-page">Test page</Link>
             {
                 comments.map((c, i) => (
@@ -37,7 +37,8 @@ function Layout({
                 ))
             }
             { children }
-        </StyledWrapper>
+            <Globals />
+        </StyledComponent>
     );
 }
 
