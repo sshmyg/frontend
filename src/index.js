@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 
+import Providers from 'app/pages/Providers';
 import getStore from 'app/redux/createStore';
 
 const { store } = getStore();
@@ -10,9 +10,9 @@ const render = () => {
     const Router = require('./Router').default;
 
     ReactDOM.render(
-        <Provider store={store}>
+        <Providers store={store}>
             <Router />
-        </Provider>,
+        </Providers>,
         rootEl
     );
 };

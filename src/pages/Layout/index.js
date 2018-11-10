@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 import * as actions from 'app/redux/comments/actions';
 
@@ -32,7 +33,12 @@ function Layout({
                     <section key={i}>
                         <p>{ c.content }</p>
                         <a href="#">{ c.name }</a>
-                        <Button onClick={() => {actionCommentAdd(`Text ${i}`);}}>Click me</Button>
+                        <Button onClick={() => {actionCommentAdd(`Text ${i}`);}}>
+                            <FormattedMessage
+                                id="Click me"
+                                defaultMessage="Click me"
+                            />
+                        </Button>
                     </section>
                 ))
             }

@@ -8,7 +8,9 @@ import {
 
 import getReducers from './getReducers';
 
-const middlewares = [thunk];
+const middlewares = [
+    thunk
+];
 
 if (process.env.NODE_ENV !== 'production') {
     middlewares.push(
