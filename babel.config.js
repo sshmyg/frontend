@@ -7,18 +7,14 @@ module.exports = {
                 modules: false
             }
         ],
+
         '@babel/preset-react'
     ],
 
     plugins: [
         'babel-plugin-transform-react-class-to-function',
         '@babel/plugin-proposal-class-properties',
-        '@babel/plugin-transform-async-to-generator',
-        [
-            'react-intl', {
-                'messagesDir': './dest/messages/'
-            }
-        ]
+        '@babel/plugin-transform-async-to-generator'
     ],
 
     env: {
@@ -27,6 +23,7 @@ module.exports = {
                 '@babel/plugin-transform-react-jsx-source'
             ]
         },
+
         production: {
             plugins: [
                 'babel-plugin-transform-react-remove-prop-types',
@@ -34,8 +31,19 @@ module.exports = {
                 '@babel/plugin-transform-react-inline-elements'
             ]
         },
+
         test: {
             plugins: ['@babel/plugin-transform-modules-commonjs']
+        },
+
+        locales: {
+            plugins: [
+                [
+                    'react-intl', {
+                        'messagesDir': './dest/messages/'
+                    }
+                ]
+            ]
         }
     }
 };
