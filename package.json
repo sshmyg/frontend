@@ -1,7 +1,7 @@
 {
     "author": "Serhey Shmyg",
     "name": "frontend",
-    "version": "4.8.3",
+    "version": "4.8.4",
     "homepage": "https://github.com/serheyShmyg/",
     "license": "ISC",
     "repository": {
@@ -43,14 +43,14 @@
         "jest": "24.1.0",
         "react-intl-translations-manager": "5.0.3",
         "terser-webpack-plugin": "1.2.2",
-        "webpack": "^4.29.1",
+        "webpack": "^4.29.3",
         "webpack-cli": "3.2.3",
         "webpack-dev-server": "^3.1.14"
     },
     "dependencies": {
         "prop-types": "^15.6.2",
-        "react": "^16.8.0",
-        "react-dom": "^16.8.0",
+        "react": "^16.8.1",
+        "react-dom": "^16.8.1",
         "react-intl": "2.8.0",
         "react-redux": "^6.0.0",
         "react-router-dom": "4.3.1",
