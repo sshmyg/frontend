@@ -1,30 +1,29 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import { useSelector } from 'react-redux';
 
-import * as actions from 'app/redux/comments/actions';
+import useActions from 'app/hooks/useActions';
+
+import * as commentsActions from 'app/redux/comments/actions';
 
 import Button from 'app/components/Button';
 
 import './style.css';
 
-function mapStateToProps(state) {
-    return {
-        comments: state.comments
-    };
-}
-
-function mapDispachToProps(dispatch) {
-    return bindActionCreators(actions, dispatch);
-}
-
-function Layout({
-    children,
-    comments,
-    actionCommentAdd
+export default function Layout({
+    children
 }) {
+    const { actionCommentAdd } = useActions(commentsActions);
+    const {
+        comments,
+        lang
+    } = useSelector(state => ({
+        comments: state.comments,
+        lang: state.session.lang
+    }));
+
     return (
         <div className="l-wrapper">
             <Link to="/test-page">Test page</Link>
@@ -47,4 +46,6 @@ function Layout({
     );
 }
 
-export default connect(mapStateToProps, mapDispachToProps)(Layout);
+Layout.propTypes = {
+    children: PropTypes.node
+};
