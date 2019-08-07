@@ -7,7 +7,7 @@ import Button from 'app/components/Button';
 describe('<Button />', () => {
     it('should render Button', () => {
         const wrapper = shallow(<Button />);
-        expect(wrapper.find('button').exists()).toBe(true);
+        expect(wrapper.find('button').exists()).toBeTruthy();
     });
 
     it('should render Button type button by default', () => {
@@ -31,10 +31,10 @@ describe('<Button />', () => {
         expect(wrapper.find('button').text()).toBe(testText);
     });
 
-    it('should matches the snapshot', () => {
-        const testText = 'test text for snapshot';
-        const tree = shallow(<Button>{ testText }</Button>);
-        expect(toJson(tree)).toMatchSnapshot();
+    it('should render Link', () => {
+        const wrapper = shallow(<Button elementType="a" />);
+        expect(wrapper.find('a').exists()).toBeTruthy();
+        expect(wrapper.find('a').prop('type')).toBeUndefined();
     });
 
     it('should onClick works', () => {
@@ -43,5 +43,11 @@ describe('<Button />', () => {
 
         wrapper.find('button').simulate('click');
         expect(handleClick).toHaveBeenCalled();
+    });
+
+    it('should matches the snapshot', () => {
+        const testText = 'test text for snapshot';
+        const tree = shallow(<Button>{ testText }</Button>);
+        expect(toJson(tree)).toMatchSnapshot();
     });
 });

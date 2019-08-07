@@ -1,33 +1,31 @@
-import React, { cloneElement } from 'react';
+import { createElement } from 'react';
 import PropTypes from 'prop-types';
 
-const tagsMap = {
-    a: <a />,
-    button: <button />
-};
-
 export default function Button({
-    tag,
+    elementType,
     children,
-    ...attrs
+    ...restProps
 }) {
-    return cloneElement(
-        tagsMap[tag],
-        attrs,
+    if (elementType === 'button' && !restProps.type) {
+        restProps.type = elementType;
+    }
+
+    return createElement(
+        elementType,
+        restProps,
         children
     );
 }
 
 Button.propTypes = {
-    type: PropTypes.oneOf(['reset', 'button', 'submit']),
-    tag: PropTypes.oneOf(['a', 'button']),
-    className: PropTypes.string,
-    onClick: PropTypes.func,
-    children: PropTypes.node,
-    disabled: PropTypes.bool
+    elementType: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func
+    ]),
+    type: PropTypes.string,
+    children: PropTypes.node
 };
 
 Button.defaultProps = {
-    tag: 'button',
-    type: 'button'
+    elementType: 'button'
 };
