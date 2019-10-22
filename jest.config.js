@@ -2,7 +2,7 @@ module.exports = {
   clearMocks: true,
   verbose: false,
   coverageDirectory: 'coverage',
-  setupFiles: ['./jest.setup.js'],
+  setupFilesAfterEnv: ['./jest.setup.js'],
 
   roots: ['<rootDir>/src'],
 
@@ -11,4 +11,7 @@ module.exports = {
   moduleNameMapper: {
     '^app/(.*)$': '<rootDir>/src/$1',
   },
+
+  notify: true,
+  notifyMode: 'always',
 };

@@ -1,53 +1,68 @@
 import React from 'react';
-import toJson from 'enzyme-to-json';
+import { render, fireEvent } from '@testing-library/react';
+import renderer from 'react-test-renderer';
 
-import Button from 'app/components/Button';
+import Button from './index';
 
-/* global shallow, jest */
 describe('<Button />', () => {
-    it('should render Button', () => {
-        const wrapper = shallow(<Button />);
-        expect(wrapper.find('button').exists()).toBeTruthy();
-    });
+  it('should render Button', () => {
+    const { container } = render(<Button />);
+    const button = container.querySelector('button');
 
-    it('should render Button type button by default', () => {
-        const wrapper = shallow(<Button />);
-        expect(wrapper.find('button').prop('type')).toBe('button');
-    });
+    expect(button).toBeInTheDocument();
+  });
 
-    it('should render Button type submit', () => {
-        const wrapper = shallow(<Button type="submit" />);
-        expect(wrapper.find('button').prop('type')).toBe('submit');
-    });
+  it('should render Button type button by default', () => {
+    const { container } = render(<Button />);
+    const button = container.querySelector('button');
 
-    it('should render Button type reset', () => {
-        const wrapper = shallow(<Button type="reset" />);
-        expect(wrapper.find('button').prop('type')).toBe('reset');
-    });
+    expect(button.type).toBe('button');
+  });
 
-    it('should render Button type reset', () => {
-        const testText = 'test text';
-        const wrapper = shallow(<Button>{ testText }</Button>);
-        expect(wrapper.find('button').text()).toBe(testText);
-    });
+  it('should render Button type submit', () => {
+    const { container } = render(<Button type="submit" />);
+    const button = container.querySelector('button');
 
-    it('should render Link', () => {
-        const wrapper = shallow(<Button elementType="a" />);
-        expect(wrapper.find('a').exists()).toBeTruthy();
-        expect(wrapper.find('a').prop('type')).toBeUndefined();
-    });
+    expect(button.type).toBe('submit');
+  });
 
-    it('should onClick works', () => {
-        const handleClick = jest.fn();
-        const wrapper = shallow(<Button onClick={handleClick} />);
+  it('should render Button type reset', () => {
+    const { container } = render(<Button type="reset" />);
+    const button = container.querySelector('button');
 
-        wrapper.find('button').simulate('click');
-        expect(handleClick).toHaveBeenCalled();
-    });
+    expect(button.type).toBe('reset');
+  });
 
-    it('should matches the snapshot', () => {
-        const testText = 'test text for snapshot';
-        const tree = shallow(<Button>{ testText }</Button>);
-        expect(toJson(tree)).toMatchSnapshot();
-    });
+  it('should render Button with text', () => {
+    const testText = 'test text';
+    const { getByText } = render(<Button>{testText}</Button>);
+    const button = getByText(testText);
+
+    expect(button).toBeInTheDocument();
+  });
+
+  it('should render Link', () => {
+    const { container } = render(<Button elementType="a" />);
+    const button = container.querySelector('a');
+
+    expect(button).toBeInTheDocument();
+  });
+
+  it('should onClick works', () => {
+    const handleClick = jest.fn();
+
+    const { container } = render(<Button onClick={handleClick} />);
+    const button = container.querySelector('button');
+
+    fireEvent.click(button);
+
+    expect(handleClick).toHaveBeenCalled();
+  });
+
+  it('should matches the snapshot', () => {
+    const testText = 'test text for snapshot';
+    const tree = renderer.create(<Button>{testText}</Button>).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });
