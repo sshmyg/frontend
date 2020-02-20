@@ -1,7 +1,7 @@
 {
   "author": "Serhey Shmyg",
   "name": "frontend",
-  "version": "4.11.0",
+  "version": "4.12.0",
   "homepage": "https://github.com/serheyShmyg/",
   "license": "ISC",
   "repository": {
@@ -16,6 +16,9 @@
     "test:watch": "npx jest --watch --coverage",
     "doc": "start-storybook",
     "locale": "NODE_ENV=locales npx babel ./src >/dev/null && node ./locale.config.js"
+  },
+  "engines": {
+    "node": ">=13"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
@@ -39,11 +42,13 @@
     "babel-eslint": "10.0.3",
     "babel-jest": "25.1.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-module-resolver": "4.0.0",
     "babel-plugin-react-intl": "4.1.21",
     "babel-plugin-transform-react-class-to-function": "1.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "css-hot-loader": "1.4.4",
     "css-loader": "3.4.2",
+    "dotenv-webpack": "1.7.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
     "eslint-import-resolver-babel-module": "^5.1.2",
@@ -54,6 +59,7 @@
     "eslint-plugin-react": "7.18.3",
     "eslint-plugin-react-hooks": "2.4.0",
     "file-loader": "5.1.0",
+    "html-webpack-plugin": "4.0.0-beta.11",
     "jest": "25.1.0",
     "mini-css-extract-plugin": "0.9.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
@@ -63,6 +69,7 @@
     "prettier": "1.19.1",
     "react-intl-translations-manager": "5.0.3",
     "react-test-renderer": "16.12.0",
+    "style-loader": "1.1.3",
     "sugarss": "2.0.0",
     "terser-webpack-plugin": "2.3.5",
     "webpack": "^4.41.6",
@@ -74,6 +81,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-hot-loader": "4.12.19",
     "react-intl": "3.12.0",
     "react-redux": "^7.2.0",
     "react-router-dom": "5.1.2",

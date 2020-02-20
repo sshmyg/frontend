@@ -14,5 +14,5 @@ export default function Providers({ store, children }) {
 
 Providers.propTypes = {
   store: PropTypes.object.isRequired,
-  children: PropTypes.node
+  children: PropTypes.node,
 };

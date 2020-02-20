@@ -18,7 +18,7 @@ export default function Layout({ children }) {
   const { setLang } = useActions(sessionActions);
   const { comments, lang } = useSelector(state => ({
     comments: state.comments,
-    lang: state.session.lang
+    lang: state.session.lang,
   }));
 
   return (
@@ -47,5 +47,5 @@ export default function Layout({ children }) {
 }
 
 Layout.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 };
