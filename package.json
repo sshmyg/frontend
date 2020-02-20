@@ -43,7 +43,7 @@
     "babel-jest": "25.1.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-module-resolver": "4.0.0",
-    "babel-plugin-react-intl": "4.1.21",
+    "babel-plugin-react-intl": "5.1.18",
     "babel-plugin-transform-react-class-to-function": "1.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "css-hot-loader": "1.4.4",
