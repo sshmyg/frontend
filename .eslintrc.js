@@ -39,6 +39,7 @@ module.exports = {
     'no-param-reassign': ['error', { props: false }],
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'no-mixed-operators': 'off',
+    'no-unused-vars': 'warn',
 
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',

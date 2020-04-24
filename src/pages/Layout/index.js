@@ -16,9 +16,10 @@ import './style.css';
 export default function Layout({ children }) {
   const { actionCommentAdd } = useActions(commentsActions);
   const { setLang } = useActions(sessionActions);
-  const { comments, lang } = useSelector(state => ({
+  const { comments, lang } = useSelector((state) => ({
     comments: state.comments,
-    lang: state.session.lang,
+    lang: state?.session?.lang,
+    test: state?.some?.non?.existing?.path ?? 'test',
   }));
 
   return (

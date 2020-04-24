@@ -1,18 +1,18 @@
 import c from './constants';
 
 const defaultState = {
-  lang: 'en'
+  lang: 'en',
 };
 
 export default function commentsReducer(
   state = defaultState,
-  { type, payload }
+  { type, payload },
 ) {
   switch (type) {
     case c.SET_LANG:
       return {
         ...state,
-        ...payload
+        ...payload,
       };
 
     default:
