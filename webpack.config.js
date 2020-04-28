@@ -6,9 +6,41 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
+const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 
 const publicPath = '/';
 const isDev = process.env.NODE_ENV !== 'production';
+const staticCommon = 'static';
+const staticCss = `${staticCommon}/css`;
+const staticJs = `${staticCommon}/js`;
+const staticMedia = `${staticCommon}/media`;
+
+const getCssLoaders = (props = {}) => [
+  isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+  {
+    loader: 'css-loader',
+    options: {
+      importLoaders: 1,
+      sourceMap: isDev,
+      ...(props.modules
+        ? {
+            modules: {
+              getLocalIdent: getCSSModuleLocalIdent,
+            },
+          }
+        : {}),
+    },
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: isDev,
+      ident: 'postcss',
+    },
+  },
+];
 
 module.exports = {
   cache: isDev,
@@ -30,12 +62,12 @@ module.exports = {
     pathinfo: isDev,
     path: path.join(process.cwd(), 'build'),
     filename: isDev
-      ? 'static/js/bundle.js'
-      : 'static/js/[name].[contenthash:8].js',
+      ? `${staticJs}/bundle.js`
+      : `${staticJs}/[name].[contenthash:8].js`,
     chunkFilename: isDev
-      ? 'static/js/[name].chunk.js'
-      : 'static/js/[name].[contenthash:8].chunk.js',
-    publicPath: publicPath,
+      ? `${staticJs}/[name].chunk.js`
+      : `${staticJs}/[name].[contenthash:8].chunk.js`,
+    publicPath,
   },
 
   resolve: {
@@ -113,25 +145,15 @@ module.exports = {
 
       {
         test: /\.css$/,
-        use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              sourceMap: isDev,
-            },
-          },
-
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: isDev,
-            },
-          },
-        ],
+        exclude: /\.module\.css$/,
+        use: getCssLoaders(),
       },
+
+      {
+        test: /\.module\.css$/,
+        use: getCssLoaders({ modules: true }),
+      },
+
       {
         test: [
           /\.bmp$/,
@@ -146,7 +168,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'static/media/[name].[hash:8].[ext]',
+              name: `${staticMedia}/[name].[hash:8].[ext]`,
             },
           },
         ],
@@ -155,24 +177,60 @@ module.exports = {
   },
 
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true,
+      silent: true,
+    }),
 
     new webpack.NamedModulesPlugin(),
 
     new HtmlWebpackPlugin({
       inject: true,
       template: 'public/index.html',
+      minify: isDev
+        ? {}
+        : {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            keepClosingSlash: true,
+            minifyJS: true,
+            minifyCSS: true,
+            minifyURLs: true,
+          },
+    }),
+
+    new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
+      PUBLIC_URL: '',
     }),
 
     !isDev &&
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: 'static/css/[name].[contenthash:8].css',
-        chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
+        filename: `${staticCss}/[name].[contenthash:8].css`,
+        chunkFilename: `${staticCss}/[name].[contenthash:8].chunk.css`,
       }),
 
+    !isDev &&
+      new CopyPlugin([
+        {
+          from: 'public/**/*',
+          ignore: ['index.html'],
+          flatten: true,
+        },
+      ]),
+
     isDev && new webpack.HotModuleReplacementPlugin(),
+
+    new webpack.BannerPlugin({
+      banner: `/*! Bundle created at: ${new Date().toJSON()} */\n`,
+      raw: true,
+      entryOnly: true,
+    }),
   ].filter(Boolean),
 
   devServer: {
@@ -180,7 +238,7 @@ module.exports = {
     watchContentBase: true,
     historyApiFallback: true,
     host: '127.0.0.1',
-    publicPath: publicPath,
+    publicPath,
     open: true,
     hot: true,
     compress: true,

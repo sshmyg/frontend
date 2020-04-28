@@ -3,6 +3,6 @@ module.exports = ({ file }) => ({
   plugins: {
     autoprefixer: {},
     'postcss-preset-env': {},
-    'postcss-nested': {}
-  }
+    'postcss-nested': {},
+  },
 });
