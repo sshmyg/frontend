@@ -11,6 +11,8 @@ import * as sessionActions from 'app/redux/session/actions';
 
 import Button from 'app/components/Button';
 
+import img from 'app/media/img/test.jpeg';
+
 import './style.css';
 
 export default function Layout({ children }) {
@@ -29,6 +31,9 @@ export default function Layout({ children }) {
       <Button onClick={() => setLang(lang === 'en' ? 'ru' : 'en')}>
         Change language
       </Button>
+      <div>
+        <img src={img} width={640} height={480} alt="test img" />
+      </div>
       {comments.map((c, i) => (
         <section key={i}>
           <p>{c.content}</p>

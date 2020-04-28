@@ -15,6 +15,8 @@ a {
 
 .l-wrapper {
   padding: 0 20%;
+  background-image: url('~app/media/img/test.png');
+  background-repeat: no-repeat;
 
   & section {
     margin-bottom: 50px;

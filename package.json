@@ -1,7 +1,7 @@
 {
   "author": "Serhey Shmyg",
   "name": "frontend",
-  "version": "4.14.0",
+  "version": "4.15.0",
   "homepage": "https://github.com/sshmyg",
   "license": "ISC",
   "repository": {
@@ -11,6 +11,7 @@
   "scripts": {
     "analyze": "yarn dev && npx webpack --profile --json > ./build/stats.json && npx webpack-bundle-analyzer ./build/stats.json ./build --mode=server",
     "start": "npx webpack-dev-server --color",
+    "start:prod": "yarn prod && npx http-server ./build -a localhost --cors -p 3000 --silent -o",
     "dev": "NODE_ENV=development yarn webpack --progress --hide-modules",
     "prod": "NODE_ENV=production npx webpack --progress --hide-modules",
     "clear": "rm -rf build node_modules",
@@ -62,7 +63,9 @@
     "eslint-plugin-react-hooks": "3.0.0",
     "file-loader": "6.0.0",
     "html-webpack-plugin": "4.2.0",
+    "http-server": "0.12.3",
     "husky": "4.2.5",
+    "image-webpack-loader": "6.0.0",
     "jest": "25.4.0",
     "lint-staged": "10.1.7",
     "mini-css-extract-plugin": "0.9.0",
@@ -79,6 +82,7 @@
     "style-loader": "1.2.0",
     "sugarss": "2.0.0",
     "terser-webpack-plugin": "2.3.6",
+    "url-loader": "4.1.0",
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "3.7.0",
     "webpack-cli": "3.3.11",

@@ -155,20 +155,61 @@ module.exports = {
       },
 
       {
-        test: [
-          /\.bmp$/,
-          /\.gif$/,
-          /\.jpe?g$/,
-          /\.png$/,
-          /\.ttf$/,
-          /\.woff$/,
-          /\.eot$/,
-        ],
+        test: [/\.ttf$/, /\.woff$/, /\.eot$/],
         use: [
           {
             loader: 'file-loader',
             options: {
               name: `${staticMedia}/[name].[hash:8].[ext]`,
+            },
+          },
+        ],
+      },
+
+      {
+        test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              // Images larger than 10 KB won’t be inlined
+              limit: 10 * 1024,
+
+              // File loader options
+              // The fallback loader will receive the same configuration options as url-loader.
+              fallback: 'file-loader',
+              name: `${staticMedia}/[name].[hash:8].[ext]`,
+            },
+          },
+        ],
+      },
+
+      {
+        test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
+        // Specify enforce: 'pre' to apply the loader
+        // before file-loader
+        // and not duplicate it in rules with them
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              disable: isDev,
+              mozjpeg: {
+                progressive: true,
+                quality: 60,
+              },
+              optipng: { enabled: false },
+              pngquant: {
+                quality: [0.65, 0.9],
+                speed: 4,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75,
+              },
             },
           },
         ],
