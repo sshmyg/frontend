@@ -72,7 +72,7 @@ module.exports = {
 
   resolve: {
     modules: ['node_modules'],
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
       app: path.join(process.cwd(), 'src'),
     },
@@ -133,14 +133,14 @@ module.exports = {
       { parser: { requireEnsure: false } },
 
       {
-        test: /\.(js|jsx)$/,
-        use: ['react-hot-loader/webpack'],
+        test: /\.(js|ts)x?$/,
+        use: 'react-hot-loader/webpack',
       },
 
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|ts)x?$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: 'babel-loader',
       },
 
       {
