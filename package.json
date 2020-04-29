@@ -17,7 +17,8 @@
     "clear": "rm -rf build node_modules",
     "test": "npx jest --coverage",
     "test:watch": "npx jest --watch --coverage",
-    "story": "start-storybook",
+    "story": "npx start-storybook",
+    "story:build": "npx build-storybook",
     "locale": "NODE_ENV=production npx babel ./src >/dev/null && node ./locale.config.js && rm -rf build/messages src/locales/whitelists"
   },
   "engines": {
