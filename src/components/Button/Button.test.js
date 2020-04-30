@@ -1,8 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import renderer from 'react-test-renderer';
 
-import Button from './index';
+import { Button } from './Button';
 
 describe('<Button />', () => {
   it('should render Button', () => {
@@ -60,9 +59,8 @@ describe('<Button />', () => {
   });
 
   it('should matches the snapshot', () => {
-    const testText = 'test text for snapshot';
-    const tree = renderer.create(<Button>{testText}</Button>).toJSON();
+    const { asFragment } = render(<Button>Hello world</Button>);
 
-    expect(tree).toMatchSnapshot();
+    expect(asFragment).toMatchSnapshot();
   });
 });

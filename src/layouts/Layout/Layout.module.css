@@ -1,0 +1,23 @@
+:root {
+  --body-bg-color: rgb(68, 118, 131);
+  --body-text-color: yellow;
+  --link-text-color: rgb(0, 183, 255);
+}
+
+:global {
+  body {
+    background-image: url('./bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--body-text-color);
+    margin: 0;
+  }
+
+  a {
+    color: var(--link-text-color);
+  }
+}
+
+.wrapper {
+  background-color: var(--body-bg-color);
+}

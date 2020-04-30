@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Providers from 'app/pages/Providers';
+import { Providers } from 'app/providers';
 import getStore from 'app/redux/createStore';
 
 const { store } = getStore();

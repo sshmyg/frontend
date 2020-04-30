@@ -2,7 +2,7 @@ import { bindActionCreators } from 'redux';
 import { useDispatch } from 'react-redux';
 import { useMemo } from 'react';
 
-export default function useActions(actions, deps = []) {
+export const useActions = (actions, deps = []) => {
   const dispatch = useDispatch();
 
   return useMemo(
@@ -15,4 +15,4 @@ export default function useActions(actions, deps = []) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     deps ? [dispatch, ...deps] : deps,
   );
-}
+};
