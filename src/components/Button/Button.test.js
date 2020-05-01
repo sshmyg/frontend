@@ -33,16 +33,9 @@ describe('<Button />', () => {
   });
 
   it('should render Button with text', () => {
-    const testText = 'test text';
+    const testText = 'Hello world';
     const { getByText } = render(<Button>{testText}</Button>);
     const button = getByText(testText);
-
-    expect(button).toBeInTheDocument();
-  });
-
-  it('should render Link', () => {
-    const { container } = render(<Button elementType="a" />);
-    const button = container.querySelector('a');
 
     expect(button).toBeInTheDocument();
   });

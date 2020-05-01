@@ -22,18 +22,18 @@ const InnerPage = lazy(() =>
 export default function RouterWrapper() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Switch>
-          <Route path="/">
-            {(props) => (
-              <Layout {...props}>
+      <Switch>
+        <Route path="/">
+          {(props) => (
+            <Layout {...props}>
+              <Suspense fallback={<h1>Loading...</h1>}>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/inner" component={InnerPage} />
-              </Layout>
-            )}
-          </Route>
-        </Switch>
-      </Suspense>
+              </Suspense>
+            </Layout>
+          )}
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 }

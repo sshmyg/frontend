@@ -1,0 +1,8 @@
+.button {
+  border: 1px solid peru;
+  padding: 5px 10px;
+  border-radius: 0;
+  cursor: pointer;
+  background-color: #fff;
+  display: inline-flex;
+}

@@ -6,7 +6,7 @@ import logo from './logo.png';
 
 export const Logo = ({ src = logo }) => {
   return (
-    <h1 className={styles.logo}>
+    <h1 data-testid="c-logo" className={styles.logo}>
       <a href="/" rel="home">
         <img className={styles.logoImg} src={src} alt="Logo" />
       </a>

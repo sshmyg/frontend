@@ -1,16 +1,19 @@
-import { createElement } from 'react';
-import PropTypes from 'prop-types';
+import React, { useMemo } from 'react';
 
-export const Button = ({ elementType = 'button', children, ...restProps }) => {
-  if (elementType === 'button' && !restProps.type) {
-    restProps.type = elementType;
-  }
+import styles from './Button.module.css';
 
-  return createElement(elementType, restProps, children);
-};
+export const Button = ({ className, type = 'button', ...restProps }) => {
+  const actualizedClassName = useMemo(
+    () => [styles.button, className].filter(Boolean).join(' '),
+    [className],
+  );
 
-Button.propTypes = {
-  elementType: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-  type: PropTypes.string,
-  children: PropTypes.node,
+  return (
+    <button
+      data-testid="c-button"
+      {...restProps}
+      type={type}
+      className={actualizedClassName}
+    />
+  );
 };

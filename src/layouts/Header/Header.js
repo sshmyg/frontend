@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { Logo } from 'app/components';
+import { Logo, Section } from 'app/components';
+
+import styles from './Header.module.css';
 
 export const Header = () => {
   return (
-    <header>
+    <Section tagName="header" className={styles.header}>
       <Logo />
-      Header
-    </header>
+    </Section>
   );
 };

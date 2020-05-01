@@ -10,6 +10,8 @@ module.exports = {
 
   moduleNameMapper: {
     '^app/(.*)$': '<rootDir>/src/$1',
+    '\\.(css|less|scss|sss|styl)$': '<rootDir>/__mocks__/style.js',
+    '\\.(gif|ttf|eot|svg)$': '<rootDir>/__mocks__/file.js',
   },
 
   notify: true,

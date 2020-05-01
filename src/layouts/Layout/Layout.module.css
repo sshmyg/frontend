@@ -5,6 +5,18 @@
 }
 
 :global {
+  *,
+  *:after,
+  *:before {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+    min-height: 100%;
+  }
+
   body {
     background-image: url('./bg.jpg');
     background-repeat: no-repeat;
@@ -16,8 +28,15 @@
   a {
     color: var(--link-text-color);
   }
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 }
 
-.wrapper {
+.main {
+  flex-grow: 1;
   background-color: var(--body-bg-color);
 }
