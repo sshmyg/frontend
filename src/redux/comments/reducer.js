@@ -13,6 +13,6 @@ const defaultState = [
   },
 ];
 
-export default function commentsReducer(state = defaultState) {
-  return state;
-}
+const commentsReducer = (state = defaultState) => state;
+
+export default commentsReducer;

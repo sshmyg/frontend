@@ -1,3 +1,3 @@
 export default {
-  ADD_COMMENT: 'app/comments/add',
+  ADD_COMMENT: '@/comments/add',
 };

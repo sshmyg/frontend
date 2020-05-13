@@ -1,3 +1,3 @@
 export default {
-  SET_LANG: 'app/session/lang',
+  SET_LANG: '@/session/lang',
 };

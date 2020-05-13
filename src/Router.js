@@ -1,11 +1,11 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { Layout } from 'app/layouts';
+import { Layout } from '@/layouts';
 
 const HomePage = lazy(() =>
   import(
-    'app/pages/Home'
+    '@/pages/Home'
     /* webpackChunkName: "HomePage" */
     /* webpackPrefetch: true */
   ),
@@ -13,7 +13,7 @@ const HomePage = lazy(() =>
 
 const InnerPage = lazy(() =>
   import(
-    'app/pages/Inner'
+    '@/pages/Inner'
     /* webpackChunkName: "InnerPage" */
     /* webpackPrefetch: true */
   ),

@@ -2,8 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { Providers } from 'app/providers';
-import getStore from 'app/redux/createStore';
+import { Providers } from '@/providers';
+import getStore from '@/redux/createStore';
 
 const { store } = getStore();
 const rootEl = document.getElementById('root');

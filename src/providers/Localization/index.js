@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
 
-import messages from 'app/locales';
+import messages from '@/locales';
 
 if (!Intl.PluralRules) {
   require('@formatjs/intl-pluralrules/polyfill');

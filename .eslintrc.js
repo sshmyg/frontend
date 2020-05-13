@@ -1,7 +1,6 @@
 module.exports = {
   root: true,
   parser: 'babel-eslint',
-  // parser: '@typescript-eslint/parser',
   plugins: ['jest', 'promise', 'react-hooks', 'import', 'react', 'prettier'],
   extends: [
     'eslint:recommended',
@@ -17,8 +16,6 @@ module.exports = {
 
     'prettier',
     'prettier/react',
-
-    //'plugin:@typescript-eslint/recommended',
   ],
   env: {
     es6: true,
@@ -56,7 +53,7 @@ module.exports = {
     'import/resolver': {
       'babel-module': {
         alias: {
-          app: './src',
+          '@': './src',
         },
         cwd: 'babelrc',
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],

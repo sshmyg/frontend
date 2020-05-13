@@ -4,10 +4,7 @@ const defaultState = {
   lang: 'en',
 };
 
-export default function commentsReducer(
-  state = defaultState,
-  { type, payload },
-) {
+const sessionReducer = (state = defaultState, { type, payload }) => {
   switch (type) {
     case c.SET_LANG:
       return {
@@ -18,4 +15,6 @@ export default function commentsReducer(
     default:
       return state;
   }
-}
+};
+
+export default sessionReducer;

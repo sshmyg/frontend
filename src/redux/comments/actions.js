@@ -1,8 +1,8 @@
 import c from './constants';
 
-export function actionCommentAdd(text) {
+export function addComment(text) {
   return {
     type: c.ADD_COMMENT,
-    text,
+    payload: { text },
   };
 }

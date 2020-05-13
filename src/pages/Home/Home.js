@@ -2,17 +2,17 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
-import { useActions, useSelector } from 'app/hooks';
+import { useActions, useSelector } from '@/hooks';
 
-import * as sessionActions from 'app/redux/session/actions';
-import * as commentsActions from 'app/redux/comments/actions';
+import * as sessionActions from '@/redux/session/actions';
+import * as commentsActions from '@/redux/comments/actions';
 
-import { Button, Block, Section } from 'app/components';
+import { Button, Block, Section } from '@/components';
 
 import messages from './Home.messages';
 
 export const Home = () => {
-  const { actionCommentAdd, setLang } = useActions({
+  const { addComment, setLang } = useActions({
     ...commentsActions,
     ...sessionActions,
   });
@@ -40,7 +40,7 @@ export const Home = () => {
               <br />
               <Button
                 onClick={() => {
-                  actionCommentAdd(`Text ${i}`);
+                  addComment(`Text ${i}`);
                 }}
               >
                 <FormattedMessage {...messages['pages.home.click']} />

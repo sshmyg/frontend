@@ -8,6 +8,6 @@ export const reducersMap = {
   session,
 };
 
-export default function () {
-  return combineReducers(reducersMap);
-}
+const getReducers = () => combineReducers(reducersMap);
+
+export default getReducers;

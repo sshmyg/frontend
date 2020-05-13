@@ -74,7 +74,7 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      app: path.join(process.cwd(), 'src'),
+      '@': path.join(process.cwd(), 'src'),
     },
   },
 

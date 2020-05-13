@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Logo, Section } from 'app/components';
+import { Logo, Section } from '@/components';
 
 import styles from './Header.module.css';
 

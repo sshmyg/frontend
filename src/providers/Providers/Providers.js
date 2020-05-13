@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import LocalizationProvider from 'app/providers/Localization';
+import LocalizationProvider from '@/providers/Localization';
 
 export const Providers = ({ store, children }) => {
   return (

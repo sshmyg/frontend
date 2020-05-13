@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Section } from 'app/components';
+import { Section } from '@/components';
 
 import styles from './Footer.module.css';
 
