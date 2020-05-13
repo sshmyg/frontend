@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 
-import { Comment } from '@/types';
+import { AddCommentAction } from './actions';
 
 const defaultState = [
   {
@@ -17,6 +17,8 @@ const defaultState = [
   },
 ];
 
-const commentsReducer: Reducer<Comment[]> = (state = defaultState) => state;
+const commentsReducer: Reducer<unknown, AddCommentAction> = (
+  state = defaultState,
+) => state;
 
 export default commentsReducer;

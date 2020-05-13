@@ -7,7 +7,7 @@ import { AppState, Comment } from '@/types';
 import { useActions, useSelector } from '@/hooks';
 
 import { setLang } from '@/redux/session/actions';
-import { actionCommentAdd } from '@/redux/comments/actions';
+import { addComment } from '@/redux/comments/actions';
 
 import { Button, Block, Section } from '@/components';
 
@@ -15,7 +15,7 @@ import messages from './Home.messages';
 
 export const Home: React.FC<{}> = () => {
   const actions = useActions({
-    actionCommentAdd,
+    addComment,
     setLang,
   });
   const { lang, comments } = useSelector((state: AppState) => ({
@@ -41,7 +41,11 @@ export const Home: React.FC<{}> = () => {
               <br />
               <Button
                 onClick={() => {
-                  actions.actionCommentAdd(`Text ${i}`);
+                  actions.addComment({
+                    text: `Text ${i}`,
+                    name: `Name ${i}`,
+                    date: Date.now(),
+                  });
                 }}
               >
                 <FormattedMessage {...messages['pages.home.click']} />
