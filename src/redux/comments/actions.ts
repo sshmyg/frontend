@@ -1,17 +1,22 @@
-import { ActionCreator, Action } from 'redux';
-
 import c from './constants';
 
-import { Comment } from '@/types';
+import { Comment, ActionCreator } from '@/types';
 
-export interface AddCommentAction extends Action {
+type AddCommentPayload = Comment;
+
+export interface AddCommentAction {
   type: typeof c.ADD_COMMENT;
-  payload: Comment;
+  payload: AddCommentPayload;
 }
 
-export type AddCommentActionCreator = ActionCreator<AddCommentAction>;
+export type AddCommentActionCreator = ActionCreator<
+  AddCommentPayload,
+  AddCommentAction
+>;
 
-export const addComment: AddCommentActionCreator = (payload: Comment) => ({
+export const addComment: AddCommentActionCreator = (
+  payload: AddCommentPayload,
+) => ({
   type: c.ADD_COMMENT,
   payload,
 });
