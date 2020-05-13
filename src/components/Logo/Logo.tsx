@@ -4,7 +4,11 @@ import styles from './Logo.module.css';
 
 import logo from './logo.png';
 
-export const Logo = ({ src = logo }) => {
+interface LogoProps {
+  src?: string;
+}
+
+export const Logo = ({ src = logo }: LogoProps): React.ReactElement => {
   return (
     <h1 data-testid="c-logo" className={styles.logo}>
       <a href="/" rel="home">

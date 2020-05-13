@@ -1,3 +1,7 @@
+import { Reducer } from 'redux';
+
+import { Comment } from '@/types';
+
 const defaultState = [
   {
     name: 'Test name',
@@ -13,6 +17,6 @@ const defaultState = [
   },
 ];
 
-export default function commentsReducer(state = defaultState) {
-  return state;
-}
+const commentsReducer: Reducer<Comment[]> = (state = defaultState) => state;
+
+export default commentsReducer;

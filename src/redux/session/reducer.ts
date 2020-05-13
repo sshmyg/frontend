@@ -1,13 +1,15 @@
+import { Reducer } from 'redux';
+
 import c from './constants';
 
 const defaultState = {
   lang: 'en',
 };
 
-export default function commentsReducer(
+const commentsReducer: Reducer<typeof defaultState> = (
   state = defaultState,
   { type, payload },
-) {
+) => {
   switch (type) {
     case c.SET_LANG:
       return {
@@ -18,4 +20,6 @@ export default function commentsReducer(
     default:
       return state;
   }
-}
+};
+
+export default commentsReducer;

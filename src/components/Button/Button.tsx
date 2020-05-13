@@ -2,7 +2,13 @@ import React, { useMemo } from 'react';
 
 import styles from './Button.module.css';
 
-export const Button = ({ className, type = 'button', ...restProps }) => {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+export const Button: React.FC<ButtonProps> = ({
+  className,
+  type = 'button',
+  ...restProps
+}) => {
   const actualizedClassName = useMemo(
     () => [styles.button, className].filter(Boolean).join(' '),
     [className],

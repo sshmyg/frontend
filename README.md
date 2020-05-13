@@ -39,11 +39,4 @@ By default boilerplate doesn't includes any polifills, to reduce bundle size.
 
 ## TypeScript
 
-Enable typescript (all required packages already installed):
-
-- Rename `tsconfig.json.bkp` to `tsconfig.json`;
-- Open `babel.config.js` and add babel preset `@babel/preset-typescript` (all
-  job does this preset)
-- Open `.eslintrc.js` change `parser` param to `@typescript-eslint/parser` and
-  add this plugin `plugin:@typescript-eslint/recommended`
-- **Don't forget to use `*.ts` and `*.tsx` files extensions during development**
+Go to `ts` branch and use it 😉

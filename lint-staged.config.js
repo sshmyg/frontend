@@ -1,3 +1,3 @@
 module.exports = {
-  '*.{js,jsx}': ['eslint --fix', 'pretty-quick --staged'],
+  '*.{js,jsx,ts,tsx}': ['eslint --fix', 'pretty-quick --staged'],
 };

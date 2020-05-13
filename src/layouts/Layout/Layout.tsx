@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 
-import { Header } from 'app/layouts/Header';
-import { Footer } from 'app/layouts/Footer';
+import { Header } from '@/layouts/Header';
+import { Footer } from '@/layouts/Footer';
 
 import styles from './Layout.module.css';
 
-export const Layout = ({ children }) => {
+export const Layout: React.FC<{}> = ({ children }) => {
   return (
     <Fragment>
       <Header />

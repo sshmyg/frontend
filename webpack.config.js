@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const path = require('path');
 
 const webpack = require('webpack');
@@ -45,7 +49,7 @@ const getCssLoaders = (props = {}) => [
 module.exports = {
   cache: isDev,
   devtool: isDev ? 'cheap-inline-module-sourcemap' : 'hidden',
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   mode: isDev ? 'development' : 'production',
 
   stats: {
@@ -74,21 +78,18 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
-      app: path.join(process.cwd(), 'src'),
+      '@': path.join(process.cwd(), 'src'),
     },
   },
 
   optimization: {
     namedChunks: true,
-    // Automatically split vendor and commons
-    // https://twitter.com/wSokra/status/969633336732905474
-    // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
+
     splitChunks: {
       chunks: 'all',
       name: false,
     },
-    // Keep the runtime chunk seperated to enable long term caching
-    // https://twitter.com/wSokra/status/969679223278505985
+
     runtimeChunk: true,
 
     minimize: !isDev,
@@ -110,14 +111,10 @@ module.exports = {
           output: {
             ecma: 5,
             comments: false,
-            // Turned on because emoji and regex is not minified properly using default
             ascii_only: true,
           },
         },
-        // Use multi-process parallel running to improve the build speed
-        // Default number of concurrent runs: os.cpus().length - 1
         parallel: true,
-        // Enable file caching
         cache: true,
         sourceMap: false,
       }),
@@ -129,7 +126,6 @@ module.exports = {
     strictExportPresence: true,
 
     rules: [
-      // Disable require.ensure as it's not a standard language feature.
       { parser: { requireEnsure: false } },
 
       {
@@ -172,11 +168,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              // Images larger than 10 KB won’t be inlined
               limit: 10 * 1024,
-
-              // File loader options
-              // The fallback loader will receive the same configuration options as url-loader.
               fallback: 'file-loader',
               name: `${staticMedia}/[name].[hash:8].[ext]`,
             },
@@ -186,9 +178,6 @@ module.exports = {
 
       {
         test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
-        // Specify enforce: 'pre' to apply the loader
-        // before file-loader
-        // and not duplicate it in rules with them
         enforce: 'pre',
         use: [
           {
@@ -250,8 +239,6 @@ module.exports = {
 
     !isDev &&
       new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
         filename: `${staticCss}/[name].[contenthash:8].css`,
         chunkFilename: `${staticCss}/[name].[contenthash:8].chunk.css`,
       }),

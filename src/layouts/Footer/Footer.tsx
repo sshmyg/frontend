@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Section } from 'app/components';
+import { Section } from '@/components';
 
 import styles from './Footer.module.css';
 
-export const Footer = () => {
+export const Footer: React.FC<{}> = () => {
   return (
     <Section tagName="footer" className={styles.footer}>
       Footer

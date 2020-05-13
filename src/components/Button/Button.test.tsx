@@ -15,21 +15,21 @@ describe('<Button />', () => {
     const { container } = render(<Button />);
     const button = container.querySelector('button');
 
-    expect(button.type).toBe('button');
+    expect(button?.type).toBe('button');
   });
 
   it('should render Button type submit', () => {
     const { container } = render(<Button type="submit" />);
     const button = container.querySelector('button');
 
-    expect(button.type).toBe('submit');
+    expect(button?.type).toBe('submit');
   });
 
   it('should render Button type reset', () => {
     const { container } = render(<Button type="reset" />);
     const button = container.querySelector('button');
 
-    expect(button.type).toBe('reset');
+    expect(button?.type).toBe('reset');
   });
 
   it('should render Button with text', () => {
@@ -46,7 +46,9 @@ describe('<Button />', () => {
     const { container } = render(<Button onClick={handleClick} />);
     const button = container.querySelector('button');
 
-    fireEvent.click(button);
+    if (button) {
+      fireEvent.click(button);
+    }
 
     expect(handleClick).toHaveBeenCalled();
   });

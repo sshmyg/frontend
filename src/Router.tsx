@@ -1,11 +1,11 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { Layout } from 'app/layouts';
+import { Layout } from '@/layouts';
 
 const HomePage = lazy(() =>
   import(
-    'app/pages/Home'
+    '@/pages/Home'
     /* webpackChunkName: "HomePage" */
     /* webpackPrefetch: true */
   ),
@@ -13,18 +13,18 @@ const HomePage = lazy(() =>
 
 const InnerPage = lazy(() =>
   import(
-    'app/pages/Inner'
+    '@/pages/Inner'
     /* webpackChunkName: "InnerPage" */
     /* webpackPrefetch: true */
   ),
 );
 
-export default function RouterWrapper() {
+export default function RouterWrapper(): React.ReactNode {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/">
-          {(props) => (
+          {(props): React.ReactNode => (
             <Layout {...props}>
               <Suspense fallback={<h1>Loading...</h1>}>
                 <Route exact path="/" component={HomePage} />

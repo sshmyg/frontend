@@ -2,24 +2,25 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
-import { useActions, useSelector } from 'app/hooks';
+import { AppState, Comment } from '@/types';
 
-import * as sessionActions from 'app/redux/session/actions';
-import * as commentsActions from 'app/redux/comments/actions';
+import { useActions, useSelector } from '@/hooks';
 
-import { Button, Block, Section } from 'app/components';
+import { setLang } from '@/redux/session/actions';
+import { actionCommentAdd } from '@/redux/comments/actions';
+
+import { Button, Block, Section } from '@/components';
 
 import messages from './Home.messages';
 
-export const Home = () => {
-  const { actionCommentAdd, setLang } = useActions({
-    ...commentsActions,
-    ...sessionActions,
+export const Home: React.FC<{}> = () => {
+  const actions = useActions({
+    actionCommentAdd,
+    setLang,
   });
-  const { lang, comments } = useSelector((state) => ({
+  const { lang, comments } = useSelector((state: AppState) => ({
     comments: state.comments,
     lang: state?.session?.lang,
-    test: state?.some?.non?.existing?.path ?? 'test',
   }));
 
   return (
@@ -27,20 +28,20 @@ export const Home = () => {
       <Section>
         <Link to="/inner">Inner page</Link>
         <br />
-        <Button onClick={() => setLang(lang === 'en' ? 'ru' : 'en')}>
+        <Button onClick={() => actions.setLang(lang === 'en' ? 'ru' : 'en')}>
           Change language {lang}
         </Button>
       </Section>
       <Section>
         <Block>
-          {comments.map((c, i) => (
+          {comments.map((c: Comment, i: number) => (
             <div key={i}>
               <p>{c.content}</p>
               <strong>{c.name}</strong>
               <br />
               <Button
                 onClick={() => {
-                  actionCommentAdd(`Text ${i}`);
+                  actions.actionCommentAdd(`Text ${i}`);
                 }}
               >
                 <FormattedMessage {...messages['pages.home.click']} />

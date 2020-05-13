@@ -1,26 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
-import { useSelector } from 'react-redux';
 
-import messages from 'app/locales';
+import messages from '@/locales';
+import { useSelector } from '@/hooks';
 
 if (!Intl.PluralRules) {
   require('@formatjs/intl-pluralrules/polyfill');
   require('@formatjs/intl-pluralrules/dist/locale-data/zh');
 }
 
+// @ts-ignore
 if (!Intl.RelativeTimeFormat) {
   require('@formatjs/intl-relativetimeformat/polyfill');
   require('@formatjs/intl-relativetimeformat/dist/locale-data/zh');
 }
 
+// @ts-ignore
 if (!Intl.DisplayNames) {
   require('@formatjs/intl-displaynames/polyfill');
   require('@formatjs/intl-displaynames/dist/locale-data/zh');
 }
 
-export default function LocalizationProvider({ children }) {
+export const LocalizationProvider: React.FC<{}> = ({ children }) => {
   const { lang } = useSelector((state) => ({ lang: state.session.lang }));
 
   return (
@@ -28,8 +29,6 @@ export default function LocalizationProvider({ children }) {
       {children}
     </IntlProvider>
   );
-}
-
-LocalizationProvider.propTypes = {
-  children: PropTypes.node,
 };
+
+export default LocalizationProvider;
