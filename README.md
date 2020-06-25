@@ -14,7 +14,7 @@
 ## Start:
 
 ```shell
-    git clone https://github.com/serheyShmyg/frontend.git && \
+    git clone https://github.com/sshmyg/frontend.git && \
     cd frontend && \
     npm install && \
     npm start;
