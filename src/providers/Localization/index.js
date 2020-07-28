@@ -5,26 +5,12 @@ import { useSelector } from 'react-redux';
 
 import messages from '@/locales';
 
-if (!Intl.PluralRules) {
-  require('@formatjs/intl-pluralrules/polyfill');
-  require('@formatjs/intl-pluralrules/dist/locale-data/zh');
-}
-
-if (!Intl.RelativeTimeFormat) {
-  require('@formatjs/intl-relativetimeformat/polyfill');
-  require('@formatjs/intl-relativetimeformat/dist/locale-data/zh');
-}
-
-if (!Intl.DisplayNames) {
-  require('@formatjs/intl-displaynames/polyfill');
-  require('@formatjs/intl-displaynames/dist/locale-data/zh');
-}
-
+// Polyfills https://formatjs.io/docs/polyfills
 export default function LocalizationProvider({ children }) {
   const { lang } = useSelector((state) => ({ lang: state.session.lang }));
 
   return (
-    <IntlProvider messages={messages[lang]} locale={lang}>
+    <IntlProvider messages={messages[lang]} locale={lang} defaultLocale="en">
       {children}
     </IntlProvider>
   );
