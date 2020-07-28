@@ -40,7 +40,7 @@ module.exports = {
     'no-mixed-operators': 'off',
     'no-unused-vars': 'warn',
 
-    '@typescript-eslint/ban-ts-ignore': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'warn',
 
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
@@ -48,6 +48,21 @@ module.exports = {
 
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+
+    'import/order': [
+      'warn',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+        ],
+        'newlines-between': 'always-and-inside-groups',
+      },
+    ],
 
     'prettier/prettier': 'error',
   },
