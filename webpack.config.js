@@ -80,15 +80,10 @@ module.exports = {
 
   optimization: {
     namedChunks: true,
-    // Automatically split vendor and commons
-    // https://twitter.com/wSokra/status/969633336732905474
-    // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
     splitChunks: {
       chunks: 'all',
       name: false,
     },
-    // Keep the runtime chunk seperated to enable long term caching
-    // https://twitter.com/wSokra/status/969679223278505985
     runtimeChunk: true,
 
     minimize: !isDev,
@@ -110,14 +105,10 @@ module.exports = {
           output: {
             ecma: 5,
             comments: false,
-            // Turned on because emoji and regex is not minified properly using default
             ascii_only: true,
           },
         },
-        // Use multi-process parallel running to improve the build speed
-        // Default number of concurrent runs: os.cpus().length - 1
         parallel: true,
-        // Enable file caching
         cache: true,
         sourceMap: false,
       }),
@@ -129,7 +120,6 @@ module.exports = {
     strictExportPresence: true,
 
     rules: [
-      // Disable require.ensure as it's not a standard language feature.
       { parser: { requireEnsure: false } },
 
       {
@@ -250,20 +240,22 @@ module.exports = {
 
     !isDev &&
       new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
         filename: `${staticCss}/[name].[contenthash:8].css`,
         chunkFilename: `${staticCss}/[name].[contenthash:8].chunk.css`,
       }),
 
     !isDev &&
-      new CopyPlugin([
-        {
-          from: 'public/**/*',
-          ignore: ['index.html'],
-          flatten: true,
-        },
-      ]),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: 'public/**/*',
+            flatten: true,
+            globOptions: {
+              ignore: ['index.html'],
+            },
+          },
+        ],
+      }),
 
     isDev && new webpack.HotModuleReplacementPlugin(),
 
