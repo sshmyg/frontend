@@ -5,23 +5,14 @@ import ReactDOM from 'react-dom';
 import { Providers } from '@/providers';
 import getStore from '@/redux/createStore';
 
+import Router from './Router';
+
 const { store } = getStore();
 const rootEl = document.getElementById('root');
-const render = () => {
-  const Router = require('./Router').default;
 
-  ReactDOM.render(
-    <Providers store={store}>
-      <Router />
-    </Providers>,
-    rootEl,
-  );
-};
-
-if (module.hot) {
-  module.hot.accept('./Router', () => {
-    setTimeout(render);
-  });
-}
-
-render();
+ReactDOM.render(
+  <Providers store={store}>
+    <Router />
+  </Providers>,
+  rootEl,
+);
