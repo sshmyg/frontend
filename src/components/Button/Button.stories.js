@@ -4,20 +4,12 @@ import { Button } from './Button';
 
 export default { title: 'Button', component: Button };
 
-const Template = (args) => <Button {...args} />;
+export const WithText = () => <Button>Button text</Button>;
 
-export const WithText = Template.bind({});
-
-WithText.args = {
-  children: 'Button text',
-};
-
-export const WithEmoji = Template.bind({});
-
-WithEmoji.args = {
-  children: (
+export const WithEmoji = () => (
+  <Button>
     <span role="img" aria-label="so cool">
       😀 😎 👍 💯
     </span>
-  ),
-};
+  </Button>
+);

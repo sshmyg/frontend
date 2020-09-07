@@ -11,5 +11,7 @@ module.exports = {
         except: ['first-nested', 'after-single-line-comment'],
       },
     ],
+    'at-rule-empty-line-before': 'always',
+    'selector-max-id': 0,
   },
 };
