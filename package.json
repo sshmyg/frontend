@@ -1,7 +1,7 @@
 {
   "author": "Serhey Shmyg",
   "name": "frontend",
-  "version": "4.25.2",
+  "version": "4.25.3",
   "homepage": "https://github.com/sshmyg",
   "license": "ISC",
   "repository": {
@@ -18,7 +18,7 @@
     "test": "npx jest --coverage",
     "test:watch": "npx jest --watch --coverage",
     "story": "npx start-storybook -p 7007",
-    "story:build": "npx dist-storybook",
+    "story:build": "npx build-storybook",
     "locale": "NODE_ENV=production npx babel ./src >/dev/null && node ./locale.config.js && rm -rf dist/messages src/locales/whitelists"
   },
   "engines": {
