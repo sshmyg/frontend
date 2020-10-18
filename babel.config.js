@@ -13,8 +13,6 @@ module.exports = {
   ],
 
   plugins: [
-    'babel-plugin-transform-react-class-to-function',
-    '@babel/plugin-proposal-class-properties',
     '@babel/plugin-transform-async-to-generator',
     '@babel/plugin-transform-runtime',
   ],
