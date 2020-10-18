@@ -6,8 +6,6 @@
 - [react-router 5](https://reacttraining.com/react-router/) (example with layout
   usage)
 - [localization with react-intl](https://github.com/formatjs/react-intl)
-- [redux](https://redux.js.org/)
-- [ducks architecture](https://github.com/erikras/ducks-modular-redux)
 - [jest](https://jestjs.io/) + [testing-library](https://testing-library.com/)
 - [doc](https://storybook.js.org/)
 

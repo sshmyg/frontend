@@ -40,6 +40,9 @@ module.exports = {
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
     'react/prefer-stateless-function': 'warn',
+    'react/jsx-no-bind': 'error',
+    'react/forbid-prop-types': 'warn',
+    'react/display-name': 'warn',
 
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',

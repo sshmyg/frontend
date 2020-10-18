@@ -1,35 +1,39 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
-import { useActions, useSelector } from '@/hooks';
-
-import * as sessionActions from '@/redux/session/actions';
-import * as commentsActions from '@/redux/comments/actions';
-
 import { Button, Block, Section } from '@/components';
+import { localeContext } from '@/providers/Localization';
 
 import messages from './Home.messages';
 
+const comments = [
+  {
+    name: 'Test',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, laudantium delectus. Nihil animi molestiae, cumque eaque sit rerum laboriosam quam ea minima veritatis vitae aut ut cupiditate et nam voluptates.',
+  },
+  {
+    name: 'Test 2',
+    content:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, laudantium delectus. Nihil animi molestiae, cumque eaque sit rerum laboriosam quam ea minima veritatis vitae aut ut cupiditate et nam voluptates.',
+  },
+];
+
 export const Home = () => {
-  const { addComment, setLang } = useActions({
-    ...commentsActions,
-    ...sessionActions,
-  });
-  const { lang, comments } = useSelector((state) => ({
-    comments: state.comments,
-    lang: state?.session?.lang,
-    test: state?.some?.non?.existing?.path ?? 'test',
-  }));
+  const { lang, setLang } = useContext(localeContext);
+
+  const handleChangeLang = useCallback(
+    () => setLang(lang === 'en' ? 'ru' : 'en'),
+    [setLang, lang],
+  );
 
   return (
     <Fragment>
       <Section>
         <Link to="/inner">Inner page</Link>
         <br />
-        <Button onClick={() => setLang(lang === 'en' ? 'ru' : 'en')}>
-          Change language {lang}
-        </Button>
+        <Button onClick={handleChangeLang}>Change language {lang}</Button>
       </Section>
       <Section>
         <Block>
@@ -38,11 +42,7 @@ export const Home = () => {
               <p>{c.content}</p>
               <strong>{c.name}</strong>
               <br />
-              <Button
-                onClick={() => {
-                  addComment(`Text ${i}`);
-                }}
-              >
+              <Button>
                 <FormattedMessage {...messages['pages.home.click']} />
               </Button>
             </div>

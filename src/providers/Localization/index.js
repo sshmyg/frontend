@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import PropTypes from 'prop-types';
 import { IntlProvider } from 'react-intl';
-import { useSelector } from 'react-redux';
 
 import messages from '@/locales';
 
+export const localeContext = createContext({ lang: 'en' });
+const { Provider } = localeContext;
+
 // Polyfills https://formatjs.io/docs/polyfills
 export default function LocalizationProvider({ children }) {
-  const { lang } = useSelector((state) => ({ lang: state.session.lang }));
+  const [lang, setLang] = useState('en');
 
   return (
-    <IntlProvider messages={messages[lang]} locale={lang} defaultLocale="en">
-      {children}
-    </IntlProvider>
+    <Provider
+      value={{
+        lang,
+        setLang,
+      }}
+    >
+      <IntlProvider messages={messages[lang]} locale={lang} defaultLocale="en">
+        {children}
+      </IntlProvider>
+    </Provider>
   );
 }
 
