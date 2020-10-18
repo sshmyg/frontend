@@ -38,7 +38,6 @@ const getCssLoaders = (props = {}) => [
     loader: 'postcss-loader',
     options: {
       sourceMap: isDev,
-      ident: 'postcss',
     },
   },
 ];
@@ -110,8 +109,6 @@ module.exports = {
           },
         },
         parallel: true,
-        cache: true,
-        sourceMap: false,
       }),
       new OptimizeCSSAssetsPlugin({}),
     ],
