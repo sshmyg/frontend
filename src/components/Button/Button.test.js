@@ -5,29 +5,29 @@ import { Button } from './Button';
 
 describe('<Button />', () => {
   it('should render Button', () => {
-    const { container } = render(<Button />);
-    const button = container.querySelector('button');
+    const { getByTestId } = render(<Button />);
+    const button = getByTestId('c-button');
 
     expect(button).toBeInTheDocument();
   });
 
   it('should render Button type button by default', () => {
-    const { container } = render(<Button />);
-    const button = container.querySelector('button');
+    const { getByTestId } = render(<Button />);
+    const button = getByTestId('c-button');
 
     expect(button.type).toBe('button');
   });
 
   it('should render Button type submit', () => {
-    const { container } = render(<Button type="submit" />);
-    const button = container.querySelector('button');
+    const { getByTestId } = render(<Button type="submit" />);
+    const button = getByTestId('c-button');
 
     expect(button.type).toBe('submit');
   });
 
   it('should render Button type reset', () => {
-    const { container } = render(<Button type="reset" />);
-    const button = container.querySelector('button');
+    const { getByTestId } = render(<Button type="reset" />);
+    const button = getByTestId('c-button');
 
     expect(button.type).toBe('reset');
   });
@@ -43,17 +43,11 @@ describe('<Button />', () => {
   it('should onClick works', () => {
     const handleClick = jest.fn();
 
-    const { container } = render(<Button onClick={handleClick} />);
-    const button = container.querySelector('button');
+    const { getByTestId } = render(<Button onClick={handleClick} />);
+    const button = getByTestId('c-button');
 
     fireEvent.click(button);
 
     expect(handleClick).toHaveBeenCalled();
-  });
-
-  it('should matches the snapshot', () => {
-    const { asFragment } = render(<Button>Hello world</Button>);
-
-    expect(asFragment).toMatchSnapshot();
   });
 });
