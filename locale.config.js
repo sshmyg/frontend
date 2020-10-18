@@ -6,7 +6,7 @@ const {
 } = manager;
 
 const defaultLanguage = 'en';
-const messagesDirectory = 'build/messages';
+const messagesDirectory = 'dist/messages';
 
 manageTranslations({
   messagesDirectory,

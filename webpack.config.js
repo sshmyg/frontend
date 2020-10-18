@@ -60,7 +60,7 @@ module.exports = {
 
   output: {
     pathinfo: isDev,
-    path: path.join(process.cwd(), 'build'),
+    path: path.join(process.cwd(), 'dist'),
     filename: isDev
       ? `${staticJs}/bundle.js`
       : `${staticJs}/[name].[contenthash:8].js`,

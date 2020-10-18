@@ -33,7 +33,7 @@ module.exports = {
         [
           'react-intl',
           {
-            messagesDir: './build/messages/',
+            messagesDir: './dist/messages/',
           },
         ],
       ],

@@ -9,17 +9,17 @@
     "url": "https://github.com/sshmyg/frontend"
   },
   "scripts": {
-    "analyze": "yarn dev && npx webpack --profile --json > ./build/stats.json && npx webpack-bundle-analyzer ./build/stats.json ./build --mode=server",
+    "analyze": "yarn dev && npx webpack --profile --json > ./dist/stats.json && npx webpack-bundle-analyzer ./dist/stats.json ./dist --mode=server",
     "start": "npx webpack-dev-server --color",
-    "start:prod": "yarn prod && npx http-server ./build -a localhost --cors -p 3000 --silent -o",
+    "start:prod": "yarn prod && npx http-server ./dist -a localhost --cors -p 3000 --silent -o",
     "dev": "NODE_ENV=development yarn webpack --progress --hide-modules",
     "prod": "NODE_ENV=production yarn webpack --progress --hide-modules",
-    "clear": "rm -rf build node_modules",
+    "clear": "rm -rf dist node_modules",
     "test": "npx jest --coverage",
     "test:watch": "npx jest --watch --coverage",
     "story": "npx start-storybook -p 7007",
-    "story:build": "npx build-storybook",
-    "locale": "NODE_ENV=production npx babel ./src >/dev/null && node ./locale.config.js && rm -rf build/messages src/locales/whitelists"
+    "story:build": "npx dist-storybook",
+    "locale": "NODE_ENV=production npx babel ./src >/dev/null && node ./locale.config.js && rm -rf dist/messages src/locales/whitelists"
   },
   "engines": {
     "node": ">=14"
