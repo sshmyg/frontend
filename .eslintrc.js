@@ -1,7 +1,6 @@
 module.exports = {
   root: true,
-  //parser: 'babel-eslint',
-  parser: '@typescript-eslint/parser',
+  parser: 'babel-eslint',
   plugins: ['jest', 'promise', 'react-hooks', 'import', 'react', 'prettier'],
   extends: [
     'eslint:recommended',
@@ -17,8 +16,6 @@ module.exports = {
 
     'prettier',
     'prettier/react',
-
-    'plugin:@typescript-eslint/recommended',
   ],
   env: {
     es6: true,
@@ -40,11 +37,12 @@ module.exports = {
     'no-mixed-operators': 'off',
     'no-unused-vars': 'warn',
 
-    '@typescript-eslint/ban-ts-comment': 'warn',
-
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
     'react/prefer-stateless-function': 'warn',
+    'react/jsx-no-bind': 'error',
+    'react/forbid-prop-types': 'warn',
+    'react/display-name': 'warn',
 
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
@@ -60,7 +58,7 @@ module.exports = {
           'sibling',
           'index',
         ],
-        'newlines-between': 'always-and-inside-groups',
+        'newlines-between': 'always',
       },
     ],
 

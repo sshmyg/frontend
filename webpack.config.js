@@ -1,7 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 const path = require('path');
 
 const webpack = require('webpack');
@@ -41,7 +37,6 @@ const getCssLoaders = (props = {}) => [
     loader: 'postcss-loader',
     options: {
       sourceMap: isDev,
-      ident: 'postcss',
     },
   },
 ];
@@ -64,7 +59,7 @@ module.exports = {
 
   output: {
     pathinfo: isDev,
-    path: path.join(process.cwd(), 'build'),
+    path: path.join(process.cwd(), 'dist'),
     filename: isDev
       ? `${staticJs}/bundle.js`
       : `${staticJs}/[name].[contenthash:8].js`,
@@ -115,8 +110,6 @@ module.exports = {
           },
         },
         parallel: true,
-        cache: true,
-        sourceMap: false,
       }),
       new OptimizeCSSAssetsPlugin({}),
     ],
@@ -212,8 +205,6 @@ module.exports = {
       silent: true,
     }),
 
-    new webpack.NamedModulesPlugin(),
-
     new HtmlWebpackPlugin({
       inject: true,
       template: 'public/index.html',
@@ -244,13 +235,17 @@ module.exports = {
       }),
 
     !isDev &&
-      new CopyPlugin([
-        {
-          from: 'public/**/*',
-          ignore: ['index.html'],
-          flatten: true,
-        },
-      ]),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: 'public/**/*',
+            flatten: true,
+            globOptions: {
+              ignore: ['index.html'],
+            },
+          },
+        ],
+      }),
 
     isDev && new webpack.HotModuleReplacementPlugin(),
 

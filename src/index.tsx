@@ -1,17 +1,14 @@
-// import 'core-js/stable';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Providers } from '@/providers';
-import getStore from '@/redux/createStore';
 
-const { store } = getStore();
 const rootEl = document.getElementById('root');
-const render = (): void => {
+const render = () => {
   const Router = require('./Router').default;
 
   ReactDOM.render(
-    <Providers store={store}>
+    <Providers>
       <Router />
     </Providers>,
     rootEl,

@@ -3,20 +3,22 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { Layout } from '@/layouts';
 
-const HomePage = lazy(() =>
-  import(
-    '@/pages/Home'
-    /* webpackChunkName: "HomePage" */
-    /* webpackPrefetch: true */
-  ),
+const HomePage = lazy(
+  () =>
+    import(
+      '@/pages/Home'
+      /* webpackChunkName: "HomePage" */
+      /* webpackPrefetch: true */
+    ),
 );
 
-const InnerPage = lazy(() =>
-  import(
-    '@/pages/Inner'
-    /* webpackChunkName: "InnerPage" */
-    /* webpackPrefetch: true */
-  ),
+const InnerPage = lazy(
+  () =>
+    import(
+      '@/pages/Inner'
+      /* webpackChunkName: "InnerPage" */
+      /* webpackPrefetch: true */
+    ),
 );
 
 export default function RouterWrapper(): React.ReactNode {
