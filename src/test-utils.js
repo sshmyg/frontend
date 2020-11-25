@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
-import { render, queries } from '@testing-library/react';
-
-import * as customQueries from './test-queries';
+import { render } from '@testing-library/react';
 
 // eslint-disable-next-line react/prop-types
 const AllTheProviders = ({ children }) => {
@@ -11,10 +9,6 @@ const AllTheProviders = ({ children }) => {
 const customRender = (ui, options) =>
   render(ui, {
     wrapper: AllTheProviders,
-    queries: {
-      ...queries,
-      ...customQueries,
-    },
     ...options,
   });
 

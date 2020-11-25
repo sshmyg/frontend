@@ -1,15 +1,16 @@
-# OS generated files #
-######################
+._*
 .DS_Store
 .DS_Store?
-._*
 .Spotlight-V100
 .Trashes
+.sass-cache
 ehthumbs.db
 Thumbs.db
-node_modules/*
-.sass-cache
-yarn-error.log
+
+node_modules
 dist
 coverage
-yarn.lock
+
+.env
+npm-error.log
+yarn-error.log

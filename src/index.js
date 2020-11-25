@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Providers } from '@/providers';
@@ -8,8 +8,10 @@ import Router from './Router';
 const rootEl = document.getElementById('root');
 
 ReactDOM.render(
-  <Providers>
-    <Router />
-  </Providers>,
+  <StrictMode>
+    <Providers>
+      <Router />
+    </Providers>
+  </StrictMode>,
   rootEl,
 );
