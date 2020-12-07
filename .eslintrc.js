@@ -1,7 +1,15 @@
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
-  plugins: ['jest', 'promise', 'react-hooks', 'import', 'react', 'prettier'],
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    '@typescript-eslint/eslint-plugin',
+    'jest',
+    'promise',
+    'react-hooks',
+    'import',
+    'react',
+    'prettier',
+  ],
   extends: [
     'eslint:recommended',
 
