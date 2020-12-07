@@ -9,6 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 const publicPath = '/';
 const isDev = process.env.NODE_ENV !== 'production';
@@ -120,11 +121,6 @@ module.exports = {
 
     rules: [
       { parser: { requireEnsure: false } },
-
-      {
-        test: /\.(js|ts)x?$/,
-        use: 'react-hot-loader/webpack',
-      },
 
       {
         test: /\.(js|ts)x?$/,
@@ -248,6 +244,7 @@ module.exports = {
       }),
 
     isDev && new webpack.HotModuleReplacementPlugin(),
+    isDev && new ReactRefreshWebpackPlugin(),
 
     new webpack.BannerPlugin({
       banner: `/*! Bundle created at: ${new Date().toJSON()} */\n`,

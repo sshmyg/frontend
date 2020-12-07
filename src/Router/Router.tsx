@@ -21,21 +21,21 @@ const InnerPage = lazy(
     ),
 );
 
-export default function RouterWrapper(): React.ReactNode {
-  return (
-    <BrowserRouter>
+const NotFound = () => <p>404</p>;
+
+export const Router = () => (
+  <BrowserRouter>
+    <Suspense fallback={<h1>Loading...</h1>}>
       <Switch>
         <Route path="/">
-          {(props): React.ReactNode => (
-            <Layout {...props}>
-              <Suspense fallback={<h1>Loading...</h1>}>
-                <Route exact path="/" component={HomePage} />
-                <Route path="/inner" component={InnerPage} />
-              </Suspense>
-            </Layout>
-          )}
+          <Layout>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/inner" component={InnerPage} />
+          </Layout>
         </Route>
+
+        <Route path="*" component={NotFound} />
       </Switch>
-    </BrowserRouter>
-  );
-}
+    </Suspense>
+  </BrowserRouter>
+);

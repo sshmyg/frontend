@@ -1,24 +1,19 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Providers } from '@/providers';
 
-const rootEl = document.getElementById('root');
-const render = () => {
-  const Router = require('./Router').default;
+import Router from './Router';
 
-  ReactDOM.render(
+const rootEl = document.getElementById('root');
+
+console.log(process.env.TEST_VAR);
+
+ReactDOM.render(
+  <StrictMode>
     <Providers>
       <Router />
-    </Providers>,
-    rootEl,
-  );
-};
-
-if (module.hot) {
-  module.hot.accept('./Router', () => {
-    setTimeout(render);
-  });
-}
-
-render();
+    </Providers>
+  </StrictMode>,
+  rootEl,
+);

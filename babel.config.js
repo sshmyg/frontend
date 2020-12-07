@@ -21,7 +21,7 @@ module.exports = {
   env: {
     development: {
       plugins: [
-        'react-hot-loader/babel',
+        'react-refresh/babel',
         '@babel/plugin-transform-react-jsx-source',
       ],
     },
