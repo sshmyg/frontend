@@ -1,19 +1,18 @@
 const custom = require('../webpack.config.js');
 
 module.exports = {
-  stories: ['../src/**/*.stories.tsx'],
-
+  stories: ['../src/**/*.stories.@(tsx|mdx)'],
   webpackFinal: (config) => {
-    config.module.rules.push({
-      test: /\.(ts|tsx)$/,
-      loader: require.resolve('babel-loader'),
-    });
-
-    config.resolve.extensions.push('.ts', '.tsx');
-
     return {
       ...config,
+      resolve: {
+        ...config.resolve,
+        alias: custom.resolve.alias,
+      },
       module: { ...config.module, rules: custom.module.rules },
     };
+  },
+  reactOptions: {
+    fastRefresh: true,
   },
 };
