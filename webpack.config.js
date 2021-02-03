@@ -44,7 +44,7 @@ const getCssLoaders = (props = {}) => [
 
 module.exports = {
   cache: isDev,
-  devtool: isDev ? 'cheap-inline-module-sourcemap' : 'hidden',
+  devtool: isDev ? 'eval' : 'hidden-source-map',
   entry: './src/index.js',
   mode: isDev ? 'development' : 'production',
 
@@ -62,7 +62,7 @@ module.exports = {
     pathinfo: isDev,
     path: path.join(process.cwd(), 'dist'),
     filename: isDev
-      ? `${staticJs}/bundle.js`
+      ? `${staticJs}/[name].js`
       : `${staticJs}/[name].[contenthash:8].js`,
     chunkFilename: isDev
       ? `${staticJs}/[name].chunk.js`
@@ -72,14 +72,13 @@ module.exports = {
 
   resolve: {
     modules: ['node_modules'],
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
       '@': path.join(process.cwd(), 'src'),
     },
   },
 
   optimization: {
-    namedChunks: true,
     splitChunks: {
       chunks: 'all',
       name: false,
@@ -90,23 +89,13 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         terserOptions: {
-          parse: {
-            ecma: 8,
-          },
+          ecma: 5,
           compress: {
-            ecma: 5,
             warnings: false,
             comparisons: false,
             inline: 2,
           },
-          mangle: {
-            safari10: true,
-          },
-          output: {
-            ecma: 5,
-            comments: false,
-            ascii_only: true,
-          },
+          mangle: true,
         },
         parallel: true,
       }),
@@ -118,8 +107,6 @@ module.exports = {
     strictExportPresence: true,
 
     rules: [
-      { parser: { requireEnsure: false } },
-
       {
         test: /\.(js|ts)x?$/,
         exclude: /node_modules/,
@@ -205,8 +192,6 @@ module.exports = {
       systemvars: true,
       silent: true,
     }),
-
-    new webpack.NamedModulesPlugin(),
 
     new HtmlWebpackPlugin({
       inject: true,
