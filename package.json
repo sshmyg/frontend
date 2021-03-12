@@ -80,7 +80,7 @@
     "postcss-preset-env": "6.7.0",
     "prettier": "2.2.1",
     "pretty-quick": "3.1.0",
-    "react-dev-utils": "11.0.1",
+    "react-dev-utils": "11.0.4",
     "react-intl-translations-manager": "5.0.3",
     "react-refresh": "0.9.0",
     "style-loader": "2.0.0",
