@@ -226,10 +226,10 @@ module.exports = {
       new CopyPlugin({
         patterns: [
           {
-            from: 'public/**/*',
-            flatten: true,
+            from: 'public',
+            noErrorOnMissing: true,
             globOptions: {
-              ignore: ['index.html'],
+              ignore: ['**/index.html'],
             },
           },
         ],
@@ -251,13 +251,14 @@ module.exports = {
     watchContentBase: true,
     historyApiFallback: true,
     host: '127.0.0.1',
+    port: '3000',
     publicPath,
     open: true,
     hot: true,
     compress: true,
     inline: true,
     stats: {
-      warnings: false,
+      warnings: true,
       modules: false,
       hash: false,
       children: false,
