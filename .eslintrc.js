@@ -15,7 +15,6 @@ module.exports = {
     'plugin:import/warnings',
 
     'prettier',
-    'prettier/react',
   ],
   env: {
     es6: true,
