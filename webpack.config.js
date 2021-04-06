@@ -44,7 +44,7 @@ const getCssLoaders = (props = {}) => [
 
 module.exports = {
   cache: isDev,
-  devtool: isDev ? 'eval' : 'hidden-source-map',
+  devtool: isDev ? 'eval-source-map' : undefined,
   entry: './src/index.js',
   mode: isDev ? 'development' : 'production',
 
