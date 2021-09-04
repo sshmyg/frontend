@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
@@ -90,16 +90,12 @@ module.exports = {
       new TerserPlugin({
         terserOptions: {
           ecma: 5,
-          compress: {
-            warnings: false,
-            comparisons: false,
-            inline: 2,
-          },
+          compress: true,
           mangle: true,
         },
         parallel: true,
       }),
-      new OptimizeCSSAssetsPlugin({}),
+      new CssMinimizerPlugin(),
     ],
   },
 
@@ -250,10 +246,11 @@ module.exports = {
     compress: true,
     inline: true,
     stats: {
-      warnings: true,
+      warnings: false,
       modules: false,
       hash: false,
       children: false,
+      colors: true,
     },
     watchOptions: {
       ignored: /node_modules/,
