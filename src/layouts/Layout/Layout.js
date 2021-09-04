@@ -5,12 +5,10 @@ import { Footer } from '@/layouts/Footer';
 
 import styles from './Layout.module.css';
 
-export const Layout = ({ children }) => {
-  return (
-    <Fragment>
-      <Header />
-      <main className={styles.main}>{children}</main>
-      <Footer />
-    </Fragment>
-  );
-};
+export const Layout = ({ children }) => (
+  <Fragment>
+    <Header />
+    <main className={styles.main}>{children}</main>
+    <Footer />
+  </Fragment>
+);

@@ -4,6 +4,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   notify: true,
   notifyMode: 'always',
+  testEnvironment: 'jsdom',
 
   setupFilesAfterEnv: ['./jest.setup.js'],
   roots: ['<rootDir>/src'],
