@@ -20,7 +20,7 @@ const comments = [
   },
 ];
 
-export const Home: React.FC<{}> = () => {
+export const Home: React.FC = () => {
   const { lang, setLang } = useContext(localeContext);
 
   const handleChangeLang = useCallback(

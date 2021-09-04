@@ -57,6 +57,12 @@ module.exports = {
     'import/order': [
       'warn',
       {
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'internal',
+          },
+        ],
         groups: [
           'builtin',
           'external',

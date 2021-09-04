@@ -21,8 +21,6 @@ export const Section: React.FC<SectionProps> = ({
   );
 
   return (
-    // TODO: fix ts igonore
-    // @ts-ignore
     <CustomTag data-testid="c-section" className={actualizedClassName}>
       <div className={styles.sectionInner}>{children}</div>
     </CustomTag>
