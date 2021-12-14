@@ -200,25 +200,36 @@ module.exports = {
   ].filter(Boolean),
 
   devServer: {
-    contentBase: './public',
-    watchContentBase: true,
+    static: {
+      directory: './public',
+      publicPath,
+      watch: {
+        ignored: /node_modules/,
+      },
+    },
+
+    devMiddleware: {
+      publicPath,
+      stats: {
+        warnings: false,
+        modules: false,
+        hash: false,
+        children: false,
+        colors: true,
+      },
+    },
+
+    client: {
+      logging: 'info', //`errors`/`warnings`
+      overlay: true,
+      progress: true,
+    },
+
     historyApiFallback: true,
-    host: '127.0.0.1',
-    port: '3000',
-    publicPath,
     open: true,
     hot: true,
-    compress: true,
-    inline: true,
-    stats: {
-      warnings: false,
-      modules: false,
-      hash: false,
-      children: false,
-      colors: true,
-    },
-    watchOptions: {
-      ignored: /node_modules/,
-    },
+
+    host: '127.0.0.1',
+    port: 3000,
   },
 };
