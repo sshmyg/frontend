@@ -1,8 +1,7 @@
 import React, { Fragment, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 
 import { useTranslation } from '@/hooks';
-import { Button, Block, Section } from '@/components';
+import { Button, Block, Section, useOutletContext, Link } from '@/components';
 
 const comments = [
   {
@@ -19,11 +18,16 @@ const comments = [
 
 export const Home: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const { testProp } = useOutletContext<{ testProp: string }>();
 
   const handleChangeLang = useCallback(
     () => i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en'),
     [i18n],
   );
+
+  const handleClick = useCallback(() => {
+    console.log(testProp);
+  }, [testProp]);
 
   return (
     <Fragment>
@@ -41,7 +45,7 @@ export const Home: React.FC = () => {
               <p>{c.content}</p>
               <strong>{c.name}</strong>
               <br />
-              <Button>{t('testButton')}</Button>
+              <Button onClick={handleClick}>{t('testButton')}</Button>
             </div>
           ))}
         </Block>

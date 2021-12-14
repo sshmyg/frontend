@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { Layout } from '@/layouts';
+import { MainLayout } from '@/layouts';
+import { BrowserRouter, Route, Routes } from '@/components';
 
 const HomePage = lazy(
   () =>
@@ -26,16 +26,16 @@ const NotFound = () => <p>404</p>;
 export const Router = () => (
   <BrowserRouter>
     <Suspense fallback={<h1>Loading...</h1>}>
-      <Switch>
-        <Route path="/">
-          <Layout>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/inner" component={InnerPage} />
-          </Layout>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="/inner" element={<InnerPage />} />
         </Route>
 
-        <Route path="*" component={NotFound} />
-      </Switch>
+        <Route path="*" element={<MainLayout />}>
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </Suspense>
   </BrowserRouter>
 );
