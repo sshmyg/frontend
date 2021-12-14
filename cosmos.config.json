@@ -1,0 +1,7 @@
+{
+  "port": "5001",
+  "watchDirs": ["src"],
+  "globalImports": ["src/index.module.css"],
+  "configPath": "./webpack.config.js",
+  "fixtureFileSuffix": "stories"
+}

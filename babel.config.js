@@ -31,12 +31,6 @@ module.exports = {
         'babel-plugin-transform-react-remove-prop-types',
         '@babel/plugin-transform-react-constant-elements',
         '@babel/plugin-transform-react-inline-elements',
-        [
-          'react-intl',
-          {
-            messagesDir: './dist/messages/',
-          },
-        ],
       ],
     },
 

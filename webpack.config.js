@@ -68,6 +68,7 @@ module.exports = {
       ? `${staticJs}/[name].chunk.js`
       : `${staticJs}/[name].[contenthash:8].chunk.js`,
     publicPath,
+    assetModuleFilename: `${staticMedia}/[name].[hash:8].[ext]`,
   },
 
   resolve: {
@@ -122,56 +123,20 @@ module.exports = {
 
       {
         test: [/\.ttf$/, /\.woff$/, /\.eot$/],
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: `${staticMedia}/[name].[hash:8].[ext]`,
-            },
-          },
-        ],
+        type: 'asset/resource',
+        /* generator: {
+          filename: `${staticMedia}/[name].[hash:8].[ext]`,
+        } */
       },
 
       {
-        test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10 * 1024,
-              fallback: 'file-loader',
-              name: `${staticMedia}/[name].[hash:8].[ext]`,
-            },
+        test: /\.(png|jpe?g|gif)$/i,
+        type: 'asset/inline',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024, // 10kb
           },
-        ],
-      },
-
-      {
-        test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
-        enforce: 'pre',
-        use: [
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              disable: isDev,
-              mozjpeg: {
-                progressive: true,
-                quality: 60,
-              },
-              optipng: { enabled: false },
-              pngquant: {
-                quality: [0.65, 0.9],
-                speed: 4,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              webp: {
-                quality: 75,
-              },
-            },
-          },
-        ],
+        },
       },
     ],
   },
