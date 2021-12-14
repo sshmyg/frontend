@@ -46,6 +46,7 @@
     "@storybook/react": "6.3.8",
     "@testing-library/jest-dom": "5.16.1",
     "@testing-library/react": "12.1.2",
+    "@testing-library/user-event": "13.5.0",
     "@types/jest": "27.0.3",
     "@types/node": "16.11.12",
     "@types/react": "17.0.37",
@@ -67,6 +68,7 @@
     "eslint": "8.4.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-import-resolver-babel-module": "^5.3.1",
+    "eslint-plugin-i18next": "5.1.2",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jest": "^25.3.0",
     "eslint-plugin-prettier": "4.0.0",
@@ -75,6 +77,7 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "html-webpack-plugin": "5.5.0",
     "husky": "^7.0.4",
+    "i18next-xhr-backend": "3.2.2",
     "jest": "27.4.5",
     "lint-staged": "12.1.2",
     "local-web-server": "5.1.1",
@@ -88,7 +91,6 @@
     "pretty-quick": "3.1.2",
     "react-cosmos": "5.6.5",
     "react-dev-utils": "11.0.4",
-    "react-intl-translations-manager": "5.0.3",
     "react-refresh": "0.11.0",
     "servor": "4.0.2",
     "style-loader": "3.3.1",
@@ -103,10 +105,11 @@
     "webpack-dev-server": "^4.6.0"
   },
   "dependencies": {
+    "i18next": "21.6.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-intl": "5.23.0",
+    "react-i18next": "11.15.1",
     "react-router-dom": "5.3.0"
   }
 }

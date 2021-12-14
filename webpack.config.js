@@ -189,6 +189,15 @@ module.exports = {
         ],
       }),
 
+    new CopyPlugin({
+      patterns: [
+        {
+          from: './src/locales',
+          to: `${staticCommon}/locales/[name].json`,
+        },
+      ],
+    }),
+
     isDev && new webpack.HotModuleReplacementPlugin(),
     isDev && new ReactRefreshWebpackPlugin(),
 

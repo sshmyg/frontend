@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-import { LocalizationProvider } from './Localization';
+interface ProvidersProps {
+  children: React.ReactNode;
+}
 
-export const Providers: React.FC<{}> = ({ children }) => {
-  return <LocalizationProvider>{children}</LocalizationProvider>;
+export const Providers = ({ children }: ProvidersProps) => {
+  return <Fragment>{children}</Fragment>;
 };

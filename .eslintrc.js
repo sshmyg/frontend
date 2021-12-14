@@ -9,9 +9,13 @@ module.exports = {
     'import',
     'react',
     'prettier',
+    'i18next',
   ],
   extends: [
     'eslint:recommended',
+
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
 
     'plugin:promise/recommended',
 
@@ -43,6 +47,7 @@ module.exports = {
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'no-mixed-operators': 'off',
     'no-unused-vars': 'warn',
+    'prefer-object-spread': 'error',
 
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
@@ -54,6 +59,16 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
 
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/array-type': [
+      'error',
+      { default: 'array', readonly: 'array' },
+    ],
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+
+    'import/no-cycle': 'error',
+    'import/no-unresolved': ['error'],
     'import/order': [
       'warn',
       {
@@ -76,6 +91,15 @@ module.exports = {
     ],
 
     'prettier/prettier': 'error',
+
+    'i18next/no-literal-string': [
+      'warn',
+      {
+        markupOnly: true,
+        // do not check attributes. Otherwise it would report all props such as "size", "color", etc..
+        onlyAttribute: ['foo'],
+      },
+    ],
   },
   settings: {
     react: {
@@ -91,4 +115,13 @@ module.exports = {
       },
     },
   },
+
+  overrides: [
+    {
+      files: ['src/**/*.+(stories|test).tsx'],
+      rules: {
+        'i18next/no-literal-string': 'off',
+      },
+    },
+  ],
 };

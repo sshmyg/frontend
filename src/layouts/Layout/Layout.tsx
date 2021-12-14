@@ -5,7 +5,11 @@ import { Footer } from '@/layouts/Footer';
 
 import styles from './Layout.module.css';
 
-export const Layout: React.FC = ({ children }) => (
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export const Layout = ({ children }: LayoutProps) => (
   <Fragment>
     <Header />
     <main className={styles.main}>{children}</main>

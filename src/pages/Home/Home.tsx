@@ -1,11 +1,8 @@
-import React, { Fragment, useCallback, useContext } from 'react';
+import React, { Fragment, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
 
+import { useTranslation } from '@/hooks';
 import { Button, Block, Section } from '@/components';
-import { localeContext } from '@/providers/Localization';
-
-import messages from './Home.messages';
 
 const comments = [
   {
@@ -21,11 +18,11 @@ const comments = [
 ];
 
 export const Home: React.FC = () => {
-  const { lang, setLang } = useContext(localeContext);
+  const { t, i18n } = useTranslation();
 
   const handleChangeLang = useCallback(
-    () => setLang(lang === 'en' ? 'ru' : 'en'),
-    [setLang, lang],
+    () => i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en'),
+    [i18n],
   );
 
   return (
@@ -33,7 +30,9 @@ export const Home: React.FC = () => {
       <Section>
         <Link to="/inner">Inner page</Link>
         <br />
-        <Button onClick={handleChangeLang}>Change language {lang}</Button>
+        <Button onClick={handleChangeLang}>
+          Change language {i18n.language}
+        </Button>
       </Section>
       <Section>
         <Block>
@@ -42,9 +41,7 @@ export const Home: React.FC = () => {
               <p>{c.content}</p>
               <strong>{c.name}</strong>
               <br />
-              <Button>
-                <FormattedMessage {...messages['pages.home.click']} />
-              </Button>
+              <Button>{t('testButton')}</Button>
             </div>
           ))}
         </Block>

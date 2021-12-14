@@ -1,6 +1,6 @@
 .button {
-  border: 1px solid peru;
-  padding: 5px 10px;
+  border: 0.0625rem solid peru;
+  padding: 0.3125rem 0.625rem;
   border-radius: 0;
   cursor: pointer;
   background-color: #fff;
