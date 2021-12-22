@@ -10,6 +10,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const publicPath = '/';
 const isDev = process.env.NODE_ENV !== 'production';
@@ -106,6 +107,7 @@ module.exports = {
     rules: [
       {
         test: /\.[jt]sx?$/,
+        include: path.join(__dirname, 'src'),
         exclude: /node_modules/,
         use: 'babel-loader',
       },
@@ -142,6 +144,10 @@ module.exports = {
   },
 
   plugins: [
+    isDev && new ReactRefreshWebpackPlugin(),
+
+    new ForkTsCheckerWebpackPlugin(),
+
     new Dotenv({
       systemvars: true,
       silent: true,
@@ -197,9 +203,6 @@ module.exports = {
         },
       ],
     }),
-
-    isDev && new webpack.HotModuleReplacementPlugin(),
-    isDev && new ReactRefreshWebpackPlugin(),
 
     new webpack.BannerPlugin({
       banner: `/*! Bundle created at: ${new Date().toJSON()} */\n`,
