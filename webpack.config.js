@@ -105,9 +105,16 @@ module.exports = {
 
     rules: [
       {
-        test: /\.(js|ts)x?$/,
+        test: /\.[jt]sx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: require.resolve('babel-loader'),
+          options: {
+            plugins: [isDev && require.resolve('react-refresh/babel')].filter(
+              Boolean,
+            ),
+          },
+        },
       },
 
       {
@@ -230,14 +237,27 @@ module.exports = {
 
     client: {
       logging: 'info', //`errors`/`warnings`
-      overlay: true,
       progress: true,
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
     },
 
-    historyApiFallback: true,
-    open: true,
-    hot: true,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*',
+    },
 
+    historyApiFallback: {
+      disableDotRule: true,
+      index: publicPath,
+    },
+
+    open: true,
+    compress: true,
+    hot: true,
     host: '127.0.0.1',
     port: 3000,
   },

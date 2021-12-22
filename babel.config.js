@@ -20,10 +20,7 @@ module.exports = {
 
   env: {
     development: {
-      plugins: [
-        'react-refresh/babel',
-        '@babel/plugin-transform-react-jsx-source',
-      ],
+      plugins: ['@babel/plugin-transform-react-jsx-source'],
     },
 
     production: {
