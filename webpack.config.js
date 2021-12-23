@@ -13,6 +13,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const publicPath = '/';
+const isProd = process.env.NODE_ENV === 'production';
 const isDev = process.env.NODE_ENV !== 'production';
 const staticCommon = 'static';
 const staticCss = `${staticCommon}/css`;
@@ -45,7 +46,7 @@ const getCssLoaders = (props = {}) => [
 
 module.exports = {
   cache: isDev,
-  devtool: isDev ? 'eval-source-map' : undefined,
+  devtool: isDev ? 'cheap-module-source-map' : undefined,
   entry: './src/index.tsx',
   mode: isDev ? 'development' : 'production',
 
@@ -81,7 +82,7 @@ module.exports = {
   },
 
   optimization: {
-    minimize: !isDev,
+    minimize: isProd,
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -103,7 +104,13 @@ module.exports = {
         test: /\.[jt]sx?$/,
         include: path.join(__dirname, 'src'),
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: require.resolve('babel-loader'),
+          options: {
+            cacheDirectory: true,
+            cacheCompression: false,
+          },
+        },
       },
 
       {
@@ -150,9 +157,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: 'public/index.html',
-      minify: isDev
-        ? {}
-        : {
+      minify: isProd
+        ? {
             removeComments: true,
             collapseWhitespace: true,
             removeRedundantAttributes: true,
@@ -163,20 +169,21 @@ module.exports = {
             minifyJS: true,
             minifyCSS: true,
             minifyURLs: true,
-          },
+          }
+        : {},
     }),
 
     new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
       PUBLIC_URL: '',
     }),
 
-    !isDev &&
+    isProd &&
       new MiniCssExtractPlugin({
         filename: `${staticCss}/[name].[contenthash:8].css`,
         chunkFilename: `${staticCss}/[name].[contenthash:8].chunk.css`,
       }),
 
-    !isDev &&
+    isProd &&
       new CopyPlugin({
         patterns: [
           {
@@ -189,20 +196,22 @@ module.exports = {
         ],
       }),
 
-    new CopyPlugin({
-      patterns: [
-        {
-          from: './src/locales',
-          to: `${staticCommon}/locales/[name].json`,
-        },
-      ],
-    }),
+    isProd &&
+      new CopyPlugin({
+        patterns: [
+          {
+            from: './src/locales',
+            to: `${staticCommon}/locales/[name].json`,
+          },
+        ],
+      }),
 
-    new webpack.BannerPlugin({
-      banner: `/*! Bundle created at: ${new Date().toJSON()} */\n`,
-      raw: true,
-      entryOnly: true,
-    }),
+    isProd &&
+      new webpack.BannerPlugin({
+        banner: `/*! Bundle created at: ${new Date().toJSON()} */\n`,
+        raw: true,
+        entryOnly: true,
+      }),
   ].filter(Boolean),
 
   devServer: {
@@ -216,28 +225,15 @@ module.exports = {
 
     devMiddleware: {
       publicPath,
-      stats: {
-        warnings: false,
-        modules: false,
-        hash: false,
-        children: false,
-        colors: true,
-      },
     },
 
     client: {
-      logging: 'info', //`errors`/`warnings`
+      logging: 'log', // "none" | "error" | "warn" | "info" | "log" | "verbose"
       progress: true,
       overlay: {
         errors: true,
         warnings: false,
       },
-    },
-
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': '*',
-      'Access-Control-Allow-Headers': '*',
     },
 
     historyApiFallback: {
