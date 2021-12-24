@@ -55,11 +55,6 @@ module.exports = {
     children: false,
   },
 
-  watchOptions: {
-    aggregateTimeout: 100,
-    poll: true,
-  },
-
   output: {
     pathinfo: isDev,
     path: path.join(process.cwd(), 'dist'),
