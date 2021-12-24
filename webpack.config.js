@@ -10,7 +10,6 @@ const CopyPlugin = require('copy-webpack-plugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const publicPath = '/';
 const isProd = process.env.NODE_ENV === 'production';
@@ -142,8 +141,6 @@ module.exports = {
   plugins: [
     isDev && new ReactRefreshWebpackPlugin(),
 
-    new ForkTsCheckerWebpackPlugin(),
-
     new Dotenv({
       systemvars: true,
       silent: true,
@@ -178,28 +175,26 @@ module.exports = {
         chunkFilename: `${staticCss}/[name].[contenthash:8].chunk.css`,
       }),
 
-    isProd &&
-      new CopyPlugin({
-        patterns: [
-          {
-            from: 'public',
-            noErrorOnMissing: true,
-            globOptions: {
-              ignore: ['**/index.html'],
-            },
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public',
+          noErrorOnMissing: true,
+          globOptions: {
+            ignore: ['**/index.html'],
           },
-        ],
-      }),
+        },
+      ],
+    }),
 
-    isProd &&
-      new CopyPlugin({
-        patterns: [
-          {
-            from: './src/locales',
-            to: `${staticCommon}/locales/[name].json`,
-          },
-        ],
-      }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: './src/locales',
+          to: `${staticCommon}/locales/[name].json`,
+        },
+      ],
+    }),
 
     isProd &&
       new webpack.BannerPlugin({
