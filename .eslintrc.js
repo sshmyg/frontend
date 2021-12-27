@@ -23,8 +23,8 @@ module.exports = {
 
     'plugin:react/recommended',
 
-    'plugin:import/errors',
-    'plugin:import/warnings',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
 
     'prettier',
   ],
@@ -68,7 +68,8 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
 
     'import/no-cycle': 'error',
-    'import/no-unresolved': ['error'],
+    'import/no-unresolved': 'error',
+    'import/export': 'warn',
     'import/order': [
       'warn',
       {
@@ -105,13 +106,10 @@ module.exports = {
     react: {
       version: 'detect',
     },
+
     'import/resolver': {
-      'babel-module': {
-        alias: {
-          '@': './src',
-        },
-        cwd: 'babelrc',
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      typescript: {
+        alwaysTryTypes: true,
       },
     },
   },

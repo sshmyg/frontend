@@ -1,5 +1,5 @@
 import React, { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
 import { Providers } from '@/providers';
 
@@ -14,7 +14,7 @@ const rootEl = document.getElementById('root');
   try {
     await initLocalization();
 
-    ReactDOM.render(
+    render(
       <StrictMode>
         <Providers>
           <Router />
