@@ -19,15 +19,11 @@ module.exports = (api) => {
 
     env: {
       development: {
-        plugins: [
-          'react-refresh/babel',
-          '@babel/plugin-transform-react-jsx-source',
-        ],
+        plugins: ['react-refresh/babel'],
       },
 
       production: {
         plugins: [
-          'babel-plugin-transform-react-remove-prop-types',
           '@babel/plugin-transform-react-constant-elements',
           '@babel/plugin-transform-react-inline-elements',
         ],

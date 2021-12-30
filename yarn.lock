@@ -1367,13 +1367,6 @@
   dependencies:
     "@babel/plugin-transform-react-jsx" "^7.16.5"
 
-"@babel/plugin-transform-react-jsx-source@^7.16.5":
-  version "7.16.5"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx-source/-/plugin-transform-react-jsx-source-7.16.5.tgz#7c2aeb6539780f3312266de3348bbb74ce9d3ce1"
-  integrity sha512-/eP+nZywJntGLjSPjksAnM9/ELIs3RbiEuTu2/zAOzwwBcfiu+m/iptEq1lERUUtSXubYSHVnVHMr13GR+TwPw==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.16.5"
-
 "@babel/plugin-transform-react-jsx@^7.16.5":
   version "7.16.5"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.16.5.tgz#5298aedc5f81e02b1cb702e597e8d6a346675765"
@@ -3657,11 +3650,6 @@ babel-plugin-transform-react-class-to-function@1.2.2:
   integrity sha512-qkRxpJ5iq1CATblWivTRRHSWGjbRptT7YTcCHo2KCDegn8dNu6CSvhrWW17RieItH9AZ+G2GsaRY+RnL1umthQ==
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
-
-babel-plugin-transform-react-remove-prop-types@^0.4.24:
-  version "0.4.24"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.24.tgz#f2edaf9b4c6a5fbe5c1d678bfb531078c1555f3a"
-  integrity sha512-eqj0hVcJUR57/Ug2zE1Yswsw4LhuqqHhD+8v120T1cl3kjg76QwtyBrdIk4WVwK+lAhBJVYCd/v+4nc4y+8JsA==
 
 babel-preset-current-node-syntax@^1.0.0:
   version "1.0.0"
