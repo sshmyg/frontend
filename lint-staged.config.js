@@ -1,7 +1,7 @@
 module.exports = {
   '*.{js,jsx,ts,tsx}': [
     'eslint --fix',
-    'pretty-quick --staged',
+    'prettier --ignore-unknown --write',
     'jest --bail --findRelatedTests --coverage false',
   ],
   '*.module.css': ['stylelint'],
