@@ -1,5 +1,4 @@
-import React, { StrictMode } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import { Providers } from '@/providers';
 
@@ -8,19 +7,22 @@ import { initLocalization } from './i18n';
 
 import './index.module.css';
 
-const rootEl = document.getElementById('root');
-
 (async () => {
   try {
+    const container = document.getElementById('root');
+
+    if (!container) {
+      throw new Error('DOM container was not found');
+    }
+
+    const root = createRoot(container);
+
     await initLocalization();
 
-    render(
-      <StrictMode>
-        <Providers>
-          <Router />
-        </Providers>
-      </StrictMode>,
-      rootEl,
+    root.render(
+      <Providers>
+        <Router />
+      </Providers>,
     );
   } catch (error) {
     console.error('ERROR: localization init', error);

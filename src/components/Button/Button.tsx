@@ -4,11 +4,11 @@ import styles from './Button.module.css';
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   className,
   type = 'button',
   ...restProps
-}) => {
+}: ButtonProps) => {
   const actualizedClassName = useMemo(
     () => [styles.button, className].filter(Boolean).join(' '),
     [className],

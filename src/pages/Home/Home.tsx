@@ -16,12 +16,12 @@ const comments = [
   },
 ];
 
-export const Home: React.FC = () => {
+export const Home = () => {
   const { t, i18n } = useTranslation();
   const { testProp } = useOutletContext<{ testProp: string }>();
 
   const handleChangeLang = useCallback(
-    () => i18n.changeLanguage(i18n.language === 'en' ? 'ru' : 'en'),
+    () => i18n.changeLanguage(i18n.language === 'en' ? 'uk' : 'en'),
     [i18n],
   );
 

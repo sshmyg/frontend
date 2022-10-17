@@ -55,6 +55,7 @@ module.exports = {
     'react/jsx-no-bind': 'error',
     'react/forbid-prop-types': 'warn',
     'react/display-name': 'warn',
+    'react/react-in-jsx-scope': 'off',
 
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',

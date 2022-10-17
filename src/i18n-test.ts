@@ -10,7 +10,9 @@ i18nBase.use(initReactI18next).init({
   ns: ['translations'],
   defaultNS: 'translations',
 
-  resources: { en: { translations: en } },
+  resources: {
+    en: { translations: en },
+  },
 });
 
 export default i18nBase;
