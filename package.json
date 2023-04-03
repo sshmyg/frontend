@@ -100,10 +100,10 @@
     "webpack-dev-server": "^4.13.2"
   },
   "dependencies": {
-    "i18next": "22.4.9",
+    "i18next": "22.4.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "12.1.4",
-    "react-router-dom": "6.6.2"
+    "react-i18next": "12.2.0",
+    "react-router-dom": "6.10.0"
   }
 }
