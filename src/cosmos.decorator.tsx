@@ -1,6 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, ReactNode } from 'react';
 
-export default function Decorator({ children }) {
+interface DecoratorProps {
+  children: ReactNode;
+}
+
+export default function Decorator({ children }: DecoratorProps) {
   return (
     <Fragment>
       <style>
