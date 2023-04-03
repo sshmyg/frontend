@@ -5,7 +5,7 @@ import styles from './Section.module.css';
 const tags = ['section', 'header', 'footer'] as const;
 
 interface SectionProps {
-  tagName?: typeof tags[number];
+  tagName?: (typeof tags)[number];
   className?: string;
   children?: ReactNode;
 }

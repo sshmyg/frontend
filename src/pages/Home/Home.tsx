@@ -32,8 +32,10 @@ export const Home = () => {
   return (
     <Fragment>
       <Section>
+        {/* eslint-disable-next-line i18next/no-literal-string */}
         <Link to="/inner">Inner page</Link>
         <br />
+        {/* eslint-disable-next-line i18next/no-literal-string */}
         <Button onClick={handleChangeLang}>
           Change language {i18n.language}
         </Button>

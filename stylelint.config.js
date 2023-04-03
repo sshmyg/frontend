@@ -4,7 +4,6 @@ module.exports = {
   rules: {
     'unit-allowed-list': ['rem', '%', 'vh', 'vw', 's', 'deg', 'fr', 'ms'],
     'no-descending-specificity': null,
-    'block-closing-brace-newline-after': 'always',
     'rule-empty-line-before': [
       'always',
       {
@@ -26,6 +25,5 @@ module.exports = {
       },
     ],
     'declaration-no-important': true,
-    'color-hex-case': 'lower',
   },
 };
