@@ -77,6 +77,15 @@ module.exports = {
 
   optimization: {
     minimize: isProd,
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
     minimizer: [
       new TerserPlugin({
         terserOptions: {
