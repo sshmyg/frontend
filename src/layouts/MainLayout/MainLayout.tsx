@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { Outlet } from '@/components';
 
 import { Header, Footer } from './components';
-import styles from './MainLayout.module.css';
+import * as styles from './MainLayout.module.css';
 
 export const MainLayout = () => (
   <Fragment>

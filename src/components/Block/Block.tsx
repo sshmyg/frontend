@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
-import styles from './Block.module.css';
+import * as styles from './Block.module.css';
 
 interface BlockProps {
   children: ReactNode;

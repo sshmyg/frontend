@@ -33,6 +33,7 @@ module.exports = {
     node: true,
     browser: true,
     jest: true,
+    es2020: true,
   },
   parserOptions: {
     ecmaVersion: 2018,
@@ -47,18 +48,45 @@ module.exports = {
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     'no-mixed-operators': 'off',
     'no-unused-vars': 'off',
-    'prefer-object-spread': 'error',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'no-nested-ternary': 'error',
+
+    // Promises
+    'no-return-await': 'error',
+    'no-await-in-loop': 'warn',
+    'prefer-promise-reject-errors': 'error',
+    'require-atomic-updates': 'error',
+    //'max-nested-callbacks': ['error', 3],
+    'no-async-promise-executor': 'error',
+    'no-promise-executor-return': 'error',
 
     'react/prop-types': 'off',
     'react/destructuring-assignment': 'off',
     'react/prefer-stateless-function': 'warn',
     'react/jsx-no-bind': 'error',
-    'react/forbid-prop-types': 'warn',
+    'react/jsx-fragments': ['error', 'element'],
+    'react/forbid-prop-types': 'off',
     'react/display-name': 'warn',
-    'react/react-in-jsx-scope': 'off',
-
+    'react/no-multi-comp': ['error', { ignoreStateless: true }],
+    'react/jsx-curly-brace-presence': [
+      'error',
+      { props: 'never', children: 'never' },
+    ],
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'error',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-sort-props': [
+      'warn',
+      {
+        ignoreCase: true,
+        shorthandFirst: true,
+        callbacksLast: true,
+        noSortAlphabetically: true,
+        reservedFirst: false,
+        multiline: 'last',
+      },
+    ],
 
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/array-type': [
@@ -66,11 +94,12 @@ module.exports = {
       { default: 'array', readonly: 'array' },
     ],
     '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-expressions': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
 
     'import/no-cycle': 'error',
     'import/no-unresolved': 'error',
-    'import/export': 'warn',
     'import/order': [
       'warn',
       {
@@ -92,10 +121,13 @@ module.exports = {
       },
     ],
 
+    'jest/valid-title': 'off', // allow dynamic test titles
+
     'prettier/prettier': 'error',
+    'prefer-object-spread': 'error',
 
     'i18next/no-literal-string': [
-      'warn',
+      'error',
       {
         markupOnly: true,
         // do not check attributes. Otherwise it would report all props such as "size", "color", etc..
@@ -103,11 +135,11 @@ module.exports = {
       },
     ],
   },
+
   settings: {
     react: {
       version: 'detect',
     },
-
     'import/resolver': {
       typescript: {
         alwaysTryTypes: true,

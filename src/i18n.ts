@@ -1,9 +1,11 @@
-import { default as i18nBase } from 'i18next';
+/// <reference types="node" />
+
+import { default as i18n } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import Backend from 'i18next-xhr-backend';
 
 export const initLocalization = () =>
-  i18nBase
+  i18n
     .use(Backend) // plugin for loading localization files
     .use(initReactI18next)
     .init({
@@ -20,4 +22,4 @@ export const initLocalization = () =>
       },
     });
 
-export default i18nBase;
+export default i18n;

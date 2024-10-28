@@ -3,5 +3,6 @@
   "watchDirs": ["src"],
   "globalImports": ["src/index.module.css"],
   "configPath": "./webpack.config.js",
-  "fixtureFileSuffix": "stories"
+  "fixtureFileSuffix": "stories",
+  "plugins": ["react-cosmos-plugin-webpack"]
 }

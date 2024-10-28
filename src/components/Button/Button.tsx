@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import { useMemo, ButtonHTMLAttributes } from 'react';
 
-import styles from './Button.module.css';
+import * as styles from './Button.module.css';
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = ({
   className,

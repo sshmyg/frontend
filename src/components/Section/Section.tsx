@@ -1,11 +1,9 @@
 import React, { ReactNode, useMemo } from 'react';
 
-import styles from './Section.module.css';
-
-const tags = ['section', 'header', 'footer'] as const;
+import * as styles from './Section.module.css';
 
 interface SectionProps {
-  tagName?: (typeof tags)[number];
+  tagName?: 'section' | 'header' | 'footer';
   className?: string;
   children?: ReactNode;
 }
