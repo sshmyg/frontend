@@ -18,7 +18,7 @@
     "test": "yarn jest --coverage",
     "test:watch": "npx jest --watch --coverage",
     "tc": "npx tsc --noEmit",
-    "lint": "npx eslint",
+    "lint": "npx eslint ./src",
     "style": "npx stylelint 'src/**/*.module.css'",
     "story": "yarn cosmos",
     "prepare": "npx husky"

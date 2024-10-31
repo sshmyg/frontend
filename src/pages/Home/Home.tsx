@@ -26,6 +26,7 @@ export const Home = () => {
   );
 
   const handleClick = useCallback(() => {
+    // eslint-disable-next-line no-console
     console.log(testProp);
   }, [testProp]);
 
