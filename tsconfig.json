@@ -29,6 +29,5 @@
     },
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "types": ["@testing-library/jest-dom"]
-  },
-  "include": ["src"]
+  }
 }
