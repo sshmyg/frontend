@@ -56,7 +56,6 @@ module.exports = {
     'no-await-in-loop': 'warn',
     'prefer-promise-reject-errors': 'error',
     'require-atomic-updates': 'error',
-    //'max-nested-callbacks': ['error', 3],
     'no-async-promise-executor': 'error',
     'no-promise-executor-return': 'error',
 
