@@ -25,5 +25,11 @@ module.exports = {
       },
     ],
     'declaration-no-important': true,
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: ['page:first'],
+      },
+    ],
   },
 };

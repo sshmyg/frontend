@@ -22,10 +22,7 @@ module.exports = (api) => {
       },
 
       production: {
-        plugins: [
-          '@babel/plugin-transform-react-constant-elements',
-          '@babel/plugin-transform-react-inline-elements',
-        ],
+        plugins: ['@babel/plugin-transform-react-constant-elements'],
       },
 
       test: {

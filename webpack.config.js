@@ -227,10 +227,10 @@ module.exports = {
     },
 
     client: {
-      logging: 'log', // "none" | "error" | "warn" | "info" | "log" | "verbose"
+      logging: 'warn',
       progress: true,
       overlay: {
-        errors: true,
+        errors: false,
         warnings: false,
       },
     },
@@ -245,5 +245,9 @@ module.exports = {
     hot: true,
     host: '127.0.0.1',
     port: 3000,
+  },
+
+  externals: {
+    stream: 'commonjs stream',
   },
 };

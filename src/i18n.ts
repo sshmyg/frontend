@@ -9,6 +9,7 @@ export const initLocalization = () =>
     .use(Backend) // plugin for loading localization files
     .use(initReactI18next)
     .init({
+      showSupportNotice: false,
       fallbackLng: process.env.DEFAULT_LOCALE,
       lng: process.env.DEFAULT_LOCALE,
 
